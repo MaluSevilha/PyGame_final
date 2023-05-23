@@ -35,7 +35,7 @@ def load_assets():
     assets[VARA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'vara.png')).convert_alpha()
     assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
-    assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
+    assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo do mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
     assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
