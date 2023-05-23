@@ -23,7 +23,7 @@ def load_assets():
     # Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
     
-    assets[VARA_IMG] = pygame.image.load(JOGADOR_DIR,'vara.png').convert
+    assets[VARA_IMG] = pygame.image.load(JOGADOR_DIR,'vara.png').convert()
     assets[VARA_IMG] = pygame.transform.scale(JOGADOR_DIR, (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
@@ -48,23 +48,23 @@ def load_assets():
     IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
     assets["imgs_barris"] = IMGS_BARRIS
 
-    eletrecuta_anim = []
-    for i in range(9):
-        # Os arquivos de animação são numerados de 00 a 08
-        filename = os.path.join(IMG_DIR, 'regularExplosion0{}.png'.format(i))
-        img = pygame.image.load(filename).convert()
-        img = pygame.transform.scale(img, (32, 32))
-        eletrecuta_anim.append(img)
-    assets[VARA_ANIM] = eletrecuta_anim
-    assets[SCORE_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
+    # eletrecuta_anim = []
+    # for i in range(9):
+    #     # Os arquivos de animação são numerados de 00 a 08
+    #     filename = path.join(IMG_DIR, 'regularExplosion0{}.png'.format(i))
+    #     img = pygame.image.load(filename).convert()
+    #     img = pygame.transform.scale(img, (32, 32))
+    #     eletrecuta_anim.append(img)
+    # assets[VARA_ANIM] = eletrecuta_anim
+    # assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
-    # Carrega os sons do jogo
-    pygame.mixer.music.load(path.join(SND_DIR, 'tgfcoder-FrozenJam-SeamlessLoop.ogg'))
-    pygame.mixer.music.set_volume(0.4)
-    assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
-    assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl6.wav'))
-    assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
-    assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
+    # # Carrega os sons do jogo
+    # pygame.mixer.music.load(path.join(SND_DIR, 'tgfcoder-FrozenJam-SeamlessLoop.ogg'))
+    # pygame.mixer.music.set_volume(0.4)
+    # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
+    # assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl6.wav'))
+    # assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
+    # assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
 
     return assets
 
