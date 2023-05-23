@@ -2,6 +2,7 @@ from os import path
 
 # Estabelece o caminho que contem as figuras e sons.
 CENARIOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Cenários')
+PEIXES_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Peixes')
 
 # Dados gerais do jogo.
 WIDTH = 480 # Largura da tela
