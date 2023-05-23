@@ -1,9 +1,17 @@
+# Importando bibliotecas necessárias
 import pygame
 from os import path
-from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH,JOGADOR_HEIGHT, BARRIL_WIDTH, BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR
-# from config import 
 
+# Importando tamanho da tela
+from config import WIDTH, HEIGHT
 
+# Importando caminhos
+from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR
+
+# Importando tamanho dos objetos
+from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH
+
+#Definindo chaves do dicionário assets
 BACKGROUND = 'background'
 PEIXE_IMG = 'peixe_img'
 VARA_IMG = 'vara_img'
@@ -28,6 +36,7 @@ def load_assets():
     assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
+    assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
     assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))

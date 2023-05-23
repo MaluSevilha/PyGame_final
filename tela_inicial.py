@@ -1,7 +1,6 @@
 import pygame
 from os import path
-
-from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR
+from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT
 
 
 def tela_inicial(tela):
@@ -10,7 +9,7 @@ def tela_inicial(tela):
 
     # Background da tela inicial
     background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa normal.png')).convert()
-    background = pygame.transform.scale2x(background)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
     rodando = True
