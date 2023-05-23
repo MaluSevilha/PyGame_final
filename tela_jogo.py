@@ -25,7 +25,7 @@ def game_screen(window):
     all_sprites.add(player)
 
     # Criando os peixes
-    for i in range(9):
+    for i in range(3):
         peixe = Peixes(assets)
         all_sprites.add(peixe)
         all_fish.add(peixe)
