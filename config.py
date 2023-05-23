@@ -19,6 +19,7 @@ AZUL = (0, 0, 255)
 AMARELO = (255, 255, 0)
 
 # Estados para controle do fluxo da aplicação
-DEAD = -1
+MORTO = -1
 INICIO = 0
-JOGANDO = 1
+FECHAR = 1
+JOGANDO = 2
