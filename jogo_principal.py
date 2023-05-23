@@ -1,8 +1,7 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
-import random
-from config import WIDTH, HEIGHT, INICIO, MORTO, FPS, PRETO, FECHAR
+from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, FPS, PRETO
 from tela_inicial import tela_inicial
 # from game_screen import game_screen
 # from game_over import game_over
