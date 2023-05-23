@@ -40,14 +40,22 @@ def tela_inicial(tela):
 
         if state == JOGANDO:
 
-            #Coloca a imagem seguinte da raposa pulando na água
+            rodando2 = True
+            tempo_inicial = pygame.time.get_ticks()
             background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa mergulhando.png')).convert()
             background = pygame.transform.scale2x(background)
             background_rect = background.get_rect()
-            tela.blit(background,background_rect)
 
-            #Inverte o display
-            pygame.display.flip()
+            while rodando2:
+                sec = (pygame.time.get_ticks()-tempo_inicial)/1000
+                if sec>=1:
+                    rodando2=False
+
+                #Coloca a imagem seguinte da raposa pulando na água
+                tela.blit(background,background_rect)
+
+                #Inverte o display
+                pygame.display.flip()
 
 
     return state
