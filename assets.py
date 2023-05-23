@@ -1,9 +1,10 @@
 import pygame
 import os
+from config import PEIXES_WIDTH, PEIXES_HEIGHT
 # from config import 
 
 
-BACKGROUND_IMG = 'background'
+BACKGROUND = 'background'
 PEIXE_IMG = 'peixe_img'
 VARA_IMG = 'vara_img'
 VARA_ANIM = 'vara_anim'
@@ -12,13 +13,19 @@ PESCOU_SOUND = 'pescou_sound'
 PERDEU_ISCA_SOUND = 'perdeu_isca_sound'
 JOGOU_VARA_SOUND = 'jogou_vara_sound'
 BACKGROUND_SOUND = 'background_sound'
+PEIXE_LARANJA_IMG = 'peixe_laranja'
+PEIXE_VERDE_IMG = 'peixe_verde'
 
 
 def load_assets():
     assets = {}
-    assets[BACKGROUND_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'starfield.png')).convert()
     assets[PEIXE_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'meteorBrown_med1.png')).convert_alpha()
     assets[VARA_IMG] = pygame.transform.scale(assets['meteor_img'], (METEOR_WIDTH, METEOR_HEIGHT))
+    assets[BACKGROUND] = pygame.image.load('assets/Fundo do mar.jpg').convert()
+    assets[PEIXE_LARANJA_IMG] = pygame.image.load('assets/Fundo do mar.jpg').convert()
+    assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
+    assets[PEIXE_VERDE_IMG] = pygame.image.load('assets/Fundo do mar.jpg').convert()
+    assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
     eletrecuta_anim = []
     for i in range(9):
