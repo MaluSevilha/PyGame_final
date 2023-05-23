@@ -8,7 +8,8 @@ HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
 
 # Define tamanhos
-
+PEIXES_WIDTH = 100
+PEIXES_HEIGHT = 100
 
 #Cores básicas
 BRANCO = (255, 255, 255)
