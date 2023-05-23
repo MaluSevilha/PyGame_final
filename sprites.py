@@ -18,7 +18,7 @@ class Peixes(pygame.sprite.Sprite):
         self.rect.y = random.randint(0, HEIGHT - PEIXES_HEIGHT)
 
         # Cria variáveis do peixe e grupos
-        self.speedx = VEL_PEIXES
+        self.speedx = random.randint(2,5)
         self.assets = assets
 
     def update(self):
@@ -26,10 +26,13 @@ class Peixes(pygame.sprite.Sprite):
         self.rect.x += self.speedx
 
         # Mata quando sai da sala
-        if self.rect.right - 30 > WIDTH:
-            self.kill()
-        if self.rect.left < 0:
-            self.kill()
+        if self.rect.right - PEIXES_WIDTH > WIDTH:
+            self.image = random.choice(self.assets[LISTA_PEIXES])
+            self.mask = pygame.mask.from_surface(self.image)
+            self.rect = self.image.get_rect()
+            self.rect.x = 0
+            self.rect.y = random.randint(0, HEIGHT - PEIXES_HEIGHT)
+            self.speedx = random.randint(2,5)
     
 class Vara(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
