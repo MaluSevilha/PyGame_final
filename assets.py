@@ -42,12 +42,12 @@ def load_assets():
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
     assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.png')).convert_alpha()
-    assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
+    assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_VERDE_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
-    assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert()
+    assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert_alpha()
     assets[BARRIL_MARROM_IMG] = pygame.transform.scale(assets[BARRIL_MARROM_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
 
-    assets[BARRIL_LARANJA_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_laranja.png')).convert()
+    assets[BARRIL_LARANJA_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_laranja.png')).convert_alpha()
     assets[BARRIL_LARANJA_IMG] = pygame.transform.scale(assets[BARRIL_LARANJA_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
 
     # Juntando as imagens dos peixes em uma lista
