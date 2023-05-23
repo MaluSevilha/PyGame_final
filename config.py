@@ -1,6 +1,7 @@
 from os import path
 
 # Estabelece o caminho que contem as figuras e sons.
+CENARIOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Cenários')
 
 # Dados gerais do jogo.
 WIDTH = 480 # Largura da tela
@@ -9,7 +10,7 @@ FPS = 60 # Frames por segundo
 
 # Define tamanhos
 PEIXES_WIDTH = 100
-PEIXES_HEIGHT = 100
+PEIXES_HEIGHT = 50
 
 #Cores básicas
 BRANCO = (255, 255, 255)
