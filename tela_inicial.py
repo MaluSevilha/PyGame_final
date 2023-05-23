@@ -43,7 +43,7 @@ def tela_inicial(tela):
             rodando2 = True
             tempo_inicial = pygame.time.get_ticks()
             background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa mergulhando.png')).convert()
-            background = pygame.transform.scale2x(background)
+            background = pygame.transform.scale(background, (WIDTH, HEIGHT))
             background_rect = background.get_rect()
 
             while rodando2:
