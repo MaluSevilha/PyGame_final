@@ -1,6 +1,7 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, VEL_PEIXES
+from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, VEL_PEIXES, VEL_JOGADOR, JOGADOR_WIDTH, JOGADOR_HEIGHT
+from assets import VARA_IMG
 
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
@@ -37,13 +38,13 @@ class Vara(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Definindo a imagem da vara
-        self.image = assets[SHIP_IMG]
+        self.image = assets[VARA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
 
         # Cria o retângulo de referência
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH_VARA / 2
-        self.rect.bottom = HEIGHT_VARA - 10
+        self.rect.centerx = JOGADOR_WIDTH / 2
+        self.rect.bottom = JOGADOR_HEIGHT - 10
 
         # Cria variáveis da vara e grupos
         self.speedy = VEL_JOGADOR

@@ -11,6 +11,7 @@ FPS = 60 # Frames por segundo
 
 # Define velocidades
 VEL_PEIXES = 5
+VEL_JOGADOR = 8
 
 # Define tamanhos
 PEIXES_WIDTH = 100
