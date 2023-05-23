@@ -1,7 +1,7 @@
 import pygame
 from os import path
 
-from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR
+from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT
 
 
 def game_over(tela):
@@ -10,7 +10,7 @@ def game_over(tela):
 
     # Background da tela inicial
     background = pygame.image.load(path.join(CENARIOS_DIR, 'GAME OVER.png')).convert()
-    background = pygame.transform.scale2x(background)
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
     rodando = True
@@ -28,7 +28,7 @@ def game_over(tela):
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
-                if pos[0]>=162 and pos[0]<=354 and pos[1]>=475 and pos[1]<=576:
+                if pos[0]>=155 and pos[0]<=331 and pos[1]>=408 and pos[1]<=493:
                     state = JOGANDO
                     rodando = False
 

@@ -48,7 +48,7 @@ def tela_inicial(tela):
 
             while rodando2:
                 sec = (pygame.time.get_ticks()-tempo_inicial)/1000
-                if sec>=1:
+                if sec >= 1:
                     rodando2=False
 
                 #Coloca a imagem seguinte da raposa pulando na água
