@@ -1,5 +1,4 @@
 import pygame
-import random
 from os import path
 
 from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR
@@ -36,6 +35,16 @@ def tela_inicial(tela):
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
+
+        if state == JOGANDO:
+
+            #Coloca a imagem seguinte da raposa pulando na água
+            background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa mergulhando.png')).convert()
+            background_rect = background.get_rect()
+            tela.blit(background,background_rect)
+
+            #Inverte o display
+            pygame.display.flip()
 
 
     return state
