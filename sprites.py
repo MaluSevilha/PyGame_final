@@ -1,6 +1,6 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, VEL_PEIXES, VEL_JOGADOR, JOGADOR_WIDTH, JOGADOR_HEIGHT
+from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, VEL_JOGADOR, JOGADOR_WIDTH, JOGADOR_HEIGHT
 from assets import VARA_IMG, LISTA_PEIXES
 
 class Peixes(pygame.sprite.Sprite):
