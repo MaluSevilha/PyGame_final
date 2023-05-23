@@ -3,7 +3,11 @@
 import pygame
 from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, FPS, PRETO, JOGANDO
 from tela_inicial import tela_inicial
+<<<<<<< HEAD
 from tela_jogo import game_screen
+=======
+# from game_screen import game_screen
+>>>>>>> 8ad779d4e934881c17ee808bb36f206f6a0a6ebf
 from game_over import game_over
 # from os import path
 # from assets import BACKGROUND

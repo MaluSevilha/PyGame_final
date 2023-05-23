@@ -10,10 +10,13 @@ def tela_inicial(tela):
 
     # Background da tela inicial
     background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa normal.png')).convert()
+    background = pygame.transform.scale2x(background)
     background_rect = background.get_rect()
 
     rodando = True
     while rodando:
+        #Define um estado inicial 
+        state = FECHAR
 
         # Ajusta a velocidade do jogo.
         relogio.tick(FPS)
@@ -40,6 +43,7 @@ def tela_inicial(tela):
 
             #Coloca a imagem seguinte da raposa pulando na água
             background = pygame.image.load(path.join(CENARIOS_DIR, 'raposa mergulhando.png')).convert()
+            background = pygame.transform.scale2x(background)
             background_rect = background.get_rect()
             tela.blit(background,background_rect)
 
