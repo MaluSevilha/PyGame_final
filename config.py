@@ -9,6 +9,9 @@ WIDTH = 480 # Largura da tela
 HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
 
+# Define velocidades
+VEL_PEIXES = 5
+
 # Define tamanhos
 PEIXES_WIDTH = 100
 PEIXES_HEIGHT = 50

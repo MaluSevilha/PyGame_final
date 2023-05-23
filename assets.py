@@ -18,6 +18,7 @@ PEIXE_VERDE_IMG = 'peixe_verde'
 
 
 def load_assets():
+    #Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
 
     assets[VARA_IMG] = pygame.transform.scale(assets['meteor_img'], (METEOR_WIDTH, METEOR_HEIGHT))
@@ -29,6 +30,10 @@ def load_assets():
 
     assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.jpg')).convert()
     assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
+
+    #juntando as imagens dos peixes em uma lista
+    IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG]]
+    assets["imgs_peixes"] = IMGS_PEIXES
 
     eletrecuta_anim = []
     for i in range(9):
@@ -47,5 +52,5 @@ def load_assets():
     assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl6.wav'))
     assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
     assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
-    
+
     return assets
