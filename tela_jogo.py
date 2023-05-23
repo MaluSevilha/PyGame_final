@@ -26,7 +26,7 @@ def game_screen(window):
 
     # Criando os peixes
     for i in range(4):
-        peixe = Peixes(assets)
+        peixe = Peixes(groups, assets)
         all_sprites.add(peixe)
         all_fish.add(peixe)
 
@@ -36,7 +36,7 @@ def game_screen(window):
     state = JOGANDO
 
     # ===== Loop principal =====
-    pygame.mixer.music.play(loops=-1)
+    # pygame.mixer.music.play(loops=-1)
     while state != FECHAR and state != MORTO:
         clock.tick(FPS)
 
@@ -82,16 +82,16 @@ def game_screen(window):
         all_sprites.draw(window)
 
         # Desenhando o score
-        text_surface = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
-        text_rect = text_surface.get_rect()
-        text_rect.midtop = (WIDTH / 2,  10)
-        window.blit(text_surface, text_rect)
+        # text_surface = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
+        # text_rect = text_surface.get_rect()
+        # text_rect.midtop = (WIDTH / 2,  10)
+        # window.blit(text_surface, text_rect)
 
-        # Desenhando as vidas
-        text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
-        text_rect = text_surface.get_rect()
-        text_rect.bottomleft = (10, HEIGHT - 10)
-        window.blit(text_surface, text_rect)
+        # # Desenhando as vidas
+        # text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
+        # text_rect = text_surface.get_rect()
+        # text_rect.bottomleft = (10, HEIGHT - 10)
+        # window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 

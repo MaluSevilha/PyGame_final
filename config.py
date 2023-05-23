@@ -7,8 +7,8 @@ OBJETOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Objetos')
 JOGADOR_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Jogador')
 
 # Dados gerais do jogo.
-WIDTH = 528 # Largura da tela
-HEIGHT = 702 # Altura da tela
+WIDTH = 500 # Largura da tela
+HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
 
 # Define velocidades
@@ -16,8 +16,8 @@ VEL_PEIXES = 5
 VEL_JOGADOR = 8
 
 # Define tamanhos
-PEIXES_WIDTH = 100
-PEIXES_HEIGHT = 50
+PEIXES_WIDTH = 150
+PEIXES_HEIGHT = 100
 
 JOGADOR_WIDTH = 20
 JOGADOR_HEIGHT = 750

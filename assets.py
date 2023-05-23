@@ -17,21 +17,22 @@ PEIXE_LARANJA_IMG = 'peixe_laranja'
 PEIXE_VERDE_IMG = 'peixe_verde'
 BARRIL_MARROM_IMG = 'barril_marrom'
 BARRIL_LARANJA_IMG = 'barril_laranja'
-
+OBSTACULOS = "imgs_barris"
+LISTA_PEIXES = "imgs_peixes"
 
 def load_assets():
     # Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
     
-    assets[VARA_IMG] = pygame.image.load(JOGADOR_DIR,'vara.png').convert()
-    assets[VARA_IMG] = pygame.transform.scale(JOGADOR_DIR, (JOGADOR_WIDTH, JOGADOR_HEIGHT))
+    assets[VARA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'vara.png')).convert_alpha()
+    assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
 
-    assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.jpg')).convert()
+    assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
-    assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.jpg')).convert()
+    assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.png')).convert_alpha()
     assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
     assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert()
@@ -42,11 +43,11 @@ def load_assets():
 
     # Juntando as imagens dos peixes em uma lista
     IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG]]
-    assets["imgs_peixes"] = IMGS_PEIXES
+    assets[LISTA_PEIXES] = IMGS_PEIXES
 
     # Juntando as imagens dos barris em uma lista
     IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
-    assets["imgs_barris"] = IMGS_BARRIS
+    assets[OBSTACULOS] = IMGS_BARRIS
 
     # eletrecuta_anim = []
     # for i in range(9):
