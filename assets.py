@@ -1,6 +1,6 @@
 import pygame
 import os
-from config import PEIXES_WIDTH, PEIXES_HEIGHT
+from config import PEIXES_WIDTH, PEIXES_HEIGHT, CENARIOS_DIR
 # from config import 
 
 
@@ -21,7 +21,7 @@ def load_assets():
     assets = {}
     assets[PEIXE_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'meteorBrown_med1.png')).convert_alpha()
     assets[VARA_IMG] = pygame.transform.scale(assets['meteor_img'], (METEOR_WIDTH, METEOR_HEIGHT))
-    assets[BACKGROUND] = pygame.image.load('assets/Fundo do mar.jpg').convert()
+    assets[BACKGROUND] = pygame.image.load(os.path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
     assets[PEIXE_LARANJA_IMG] = pygame.image.load('assets/Fundo do mar.jpg').convert()
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
     assets[PEIXE_VERDE_IMG] = pygame.image.load('assets/Fundo do mar.jpg').convert()
