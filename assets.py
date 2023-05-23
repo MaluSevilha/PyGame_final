@@ -1,6 +1,6 @@
 import pygame
 from os import path
-from config import PEIXES_WIDTH, PEIXES_HEIGHT, CENARIOS_DIR, PEIXES_DIR
+from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH,JOGADOR_HEIGHT, BARRIL_WIDTH, BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR
 # from config import 
 
 
@@ -15,13 +15,16 @@ JOGOU_VARA_SOUND = 'jogou_vara_sound'
 BACKGROUND_SOUND = 'background_sound'
 PEIXE_LARANJA_IMG = 'peixe_laranja'
 PEIXE_VERDE_IMG = 'peixe_verde'
+BARRIL_MARROM_IMG = 'barril_marrom'
+BARRIL_LARANJA_IMG = 'barril_laranja'
 
 
 def load_assets():
-    #Criando o dicionário assets e adicionando as imagens à ele
+    # Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
-
-    assets[VARA_IMG] = pygame.transform.scale(assets['meteor_img'], (METEOR_WIDTH, METEOR_HEIGHT))
+    
+    assets[VARA_IMG] = pygame.image.load(JOGADOR_DIR,'vara.png').convert
+    assets[VARA_IMG] = pygame.transform.scale(JOGADOR_DIR, (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'Fundo_do_mar.jpg')).convert()
 
@@ -31,9 +34,19 @@ def load_assets():
     assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.jpg')).convert()
     assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
-    #juntando as imagens dos peixes em uma lista
+    assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert()
+    assets[BARRIL_MARROM_IMG] = pygame.transform.scale(assets[BARRIL_MARROM_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
+
+    assets[BARRIL_LARANJA_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_laranja.png')).convert()
+    assets[BARRIL_LARANJA_IMG] = pygame.transform.scale(assets[BARRIL_LARANJA_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
+
+    # Juntando as imagens dos peixes em uma lista
     IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG]]
     assets["imgs_peixes"] = IMGS_PEIXES
+
+    # Juntando as imagens dos barris em uma lista
+    IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
+    assets["imgs_barris"] = IMGS_BARRIS
 
     eletrecuta_anim = []
     for i in range(9):
@@ -54,3 +67,6 @@ def load_assets():
     assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
 
     return assets
+
+
+
