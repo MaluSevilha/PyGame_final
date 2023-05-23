@@ -12,7 +12,6 @@ HEIGHT = 600 # Altura da tela
 FPS = 60 # Frames por segundo
 
 # Define velocidades
-VEL_PEIXES = 5
 VEL_JOGADOR = 8
 
 # Define tamanhos
