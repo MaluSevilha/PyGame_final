@@ -1,7 +1,7 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, JOGANDO, FECHAR, MORTO, PRETO
 from assets import load_assets, BACKGROUND, SCORE_FONT
-from sprites import Peixes
+from sprites import Peixes, Vara
 
 
 def game_screen(window):
@@ -21,7 +21,7 @@ def game_screen(window):
     groups['all_obstaculos'] = all_obstaculos
 
     # Criando o jogador
-    player = Ship(groups, assets)
+    player = Vara(groups, assets)
     all_sprites.add(player)
 
     # Criando os peixes
@@ -56,9 +56,9 @@ def game_screen(window):
                     # Dependendo da tecla, altera a velocidade.
                     keys_down[event.key] = True
                     if event.key == pygame.K_UP:
-                        player.speedy += 8
-                    if event.key == pygame.K_DOWN:
                         player.speedy -= 8
+                    if event.key == pygame.K_DOWN:
+                        player.speedy += 8
                     
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
@@ -68,7 +68,7 @@ def game_screen(window):
                         if event.key == pygame.K_UP:
                             player.speedy += 8
                         if event.key == pygame.K_DOWN:
-                            player.speedx -= 8
+                            player.speedy -= 8
 
         # ----- Atualiza estado do jogo
         # Atualizando a posição dos meteoros
