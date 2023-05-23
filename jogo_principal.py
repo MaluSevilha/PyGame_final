@@ -1,9 +1,9 @@
 # ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
-from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO
+from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, FPS, PRETO
 from tela_inicial import tela_inicial
-from tela_jogo import game_screen
+# from game_screen import game_screen
 from game_over import game_over
 # from os import path
 # from assets import BACKGROUND
@@ -19,8 +19,8 @@ state = INICIO
 while state != FECHAR:
     if state == INICIO:
         state = tela_inicial(window)
-    elif state == JOGANDO:
-        state = game_screen(window)
+    # elif state == GAME:
+    #     state = game_screen(window)
     elif state == MORTO:
         state = game_over(window)
     else:
