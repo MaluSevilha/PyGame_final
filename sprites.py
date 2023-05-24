@@ -15,7 +15,7 @@ class Peixes(pygame.sprite.Sprite):
         # Cria o retângulo de referência
         self.rect = self.image.get_rect()
         self.rect.x = 0
-        self.rect.y = random.randint(0, HEIGHT - PEIXES_HEIGHT)
+        self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
 
         # Cria variáveis do peixe e grupos
         self.speedx = random.randint(2,5)
@@ -31,7 +31,7 @@ class Peixes(pygame.sprite.Sprite):
             self.mask = pygame.mask.from_surface(self.image)
             self.rect = self.image.get_rect()
             self.rect.x = 0
-            self.rect.y = random.randint(0, HEIGHT - PEIXES_HEIGHT)
+            self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
             self.speedx = random.randint(2,5)
     
 class Vara(pygame.sprite.Sprite):
