@@ -25,6 +25,7 @@ JOGADOR_HEIGHT = HEIGHT
 BARRIL_WIDTH = 50
 BARRIL_HEIGHT = 100
 
+VIDA_TAM = 60       # É um 'quadrado'
 
 #Cores básicas
 BRANCO = (255, 255, 255)

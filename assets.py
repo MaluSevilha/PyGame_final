@@ -9,7 +9,7 @@ from config import WIDTH, HEIGHT
 from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR
 
 # Importando tamanho dos objetos
-from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH
+from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH, VIDA_TAM
 
 # Definindo chaves do dicionário assets
 # ---- Cenários
@@ -19,8 +19,11 @@ BACKGROUND = 'background'
 PEIXE_IMG = 'peixe_img'
 PEIXE_LARANJA_IMG = 'peixe_laranja'
 PEIXE_VERDE_IMG = 'peixe_verde'
+
+# ---- Imagens: Objetos
 BARRIL_MARROM_IMG = 'barril_marrom'
 BARRIL_LARANJA_IMG = 'barril_laranja'
+VIDA_IMG = 'vida_img'
 
 # ---- Imagens: jogador
 VARA_IMG = 'vara_img'
@@ -70,6 +73,9 @@ def load_assets():
 
     assets[BARRIL_LARANJA_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_laranja.png')).convert_alpha()
     assets[BARRIL_LARANJA_IMG] = pygame.transform.scale(assets[BARRIL_LARANJA_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
+
+    assets[VIDA_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'coracao.png')).convert_alpha()
+    assets[VIDA_IMG] = pygame.transform.scale(assets[VIDA_IMG],(VIDA_TAM, VIDA_TAM))
 
     # Juntando as imagens dos peixes em uma lista
     IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG]]

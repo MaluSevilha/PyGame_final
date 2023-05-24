@@ -1,7 +1,7 @@
 import pygame
-from config import FPS, JOGANDO, FECHAR, MORTO, PRETO, VEL_JOGADOR, AMARELO, WIDTH
+from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
 from assets import load_assets, BACKGROUND, SCORE_FONT
-from sprites import Peixes, Vara, Obstaculos
+from sprites import Peixes, Vara, Obstaculos, Vida
 
 
 def game_screen(window):
@@ -14,11 +14,13 @@ def game_screen(window):
     all_sprites = pygame.sprite.Group()
     all_fish = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
+    all_vidas = pygame.sprite.Group()
 
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_fish'] = all_fish
     groups['all_obstaculos'] = all_obstaculos
+    groups['all_vidas'] = all_vidas
 
     # Criando o jogador
     player = Vara(groups, assets)
@@ -83,12 +85,21 @@ def game_screen(window):
             pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
             for peixe in pescou:
+                # Barulho do peixe sendo pescado
+
+                # Animação
+                
                 # Repondo os peixes pescados
                 peixe_novo = Peixes(assets)
                 all_sprites.add(peixe_novo)
                 all_fish.add(peixe_novo)
             
                 score += 1
+
+                if score % 5 == 0:
+                    vida_nova = Vida(assets)
+                    all_sprites.add(vida_nova)
+                    all_vidas.add(vida_nova)
             
             atingiu = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
 
@@ -101,6 +112,11 @@ def game_screen(window):
                 all_obstaculos.add(barril_novo)
             
                 vidas -= 1
+            
+            pegou_vida = pygame.sprite.spritecollide(player, all_vidas, True, pygame.sprite.collide_mask)
+
+            for vida_pega in pegou_vida:
+                vidas += 1
 
         # Confere se morreu
         if vidas == 0:
@@ -119,11 +135,11 @@ def game_screen(window):
         text_rect.midtop = (WIDTH / 2,  10)
         window.blit(text_surface, text_rect)
 
-        # # Desenhando as vidas
-        # text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
-        # text_rect = text_surface.get_rect()
-        # text_rect.bottomleft = (10, HEIGHT - 10)
-        # window.blit(text_surface, text_rect)
+        #   Desenhando as vidas
+        text_surface = assets[SCORE_FONT].render(chr(9829) * vidas, True, VERMELHO)
+        text_rect = text_surface.get_rect()
+        text_rect.bottomleft = (10, HEIGHT - 10)
+        window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
