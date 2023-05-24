@@ -54,7 +54,7 @@ def load_assets():
     assets[LINHA_IMG] = pygame.transform.scale(assets[LINHA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[ANZOL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol.png')).convert_alpha()
-    assets[ANZOL_IMG] = pygame.transform.scale(assets[ANZOL_IMG], (JOGADOR_WIDTH, 50))
+    assets[ANZOL_IMG] = pygame.transform.scale(assets[ANZOL_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
