@@ -42,7 +42,7 @@ def game_screen(window):
         all_fish.add(peixe)
     
     for i in range (2):
-        obstaculo = Obstaculos(assets,level)
+        obstaculo = Obstaculos(assets)
         all_sprites.add(obstaculo)
         all_obstaculos.add(obstaculo)
 
@@ -96,20 +96,29 @@ def game_screen(window):
                         
     
         # ----- Atualiza estado do jogo
-        # Atualizando a posição dos meteoros
-        all_sprites.update()
+        # Atualizando a posição dos sprites
+        all_sprites.update(level)
 
         if state == JOGANDO:
-
-            # Define se aumenta o nível
-            if score>= 4:
+            
+            # ----- GRAUS DE DIFICULDADE
+            # Define se aumenta o nível para a velocidade do barril
+            if score>= 15:
                 level = True
             else: 
                 level = False
 
-            if level == True:
+            # Aumenta número de barril
+            if score>=20:
+                if len(all_obstaculos)<=2:
+                    barril = Obstaculos(assets)
+                    all_obstaculos.add(barril)
+                    all_sprites.add(barril)
+
+            if score>=30:
+                #Adiciona água viva no nível mais alto
                 if len(all_aguaviva)<=1:
-                    if score%5==0:
+                    if score%2==0:
                         aguaviva = Aguaviva(assets)
                         all_sprites.add(aguaviva)
                         all_aguaviva.add(aguaviva)
@@ -149,7 +158,7 @@ def game_screen(window):
                     vidas -= 1
 
                 # Repondo os barris atingidos
-                barril_novo = Obstaculos(assets,level)
+                barril_novo = Obstaculos(assets)
                 all_sprites.add(barril_novo)
                 all_obstaculos.add(barril_novo)
         

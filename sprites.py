@@ -21,7 +21,7 @@ class Peixes(pygame.sprite.Sprite):
         self.speedx = random.randint(2, 5)
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualização da posição da nave
         self.rect.x += self.speedx
 
@@ -54,7 +54,7 @@ class Anzol(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -93,7 +93,7 @@ class Linha(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -104,7 +104,7 @@ class Linha(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT          
 
 class Obstaculos(pygame.sprite.Sprite):
-    def __init__(self, assets,level):
+    def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -116,15 +116,11 @@ class Obstaculos(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = -BARRIL_WIDTH
         self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
+        self.speedx = random.randint(1,3)
 
-        # Definindo velocidades (quando level for true, aumentou o nível de dificuldade)
-        if level==True:
-            self.speedx = random.randint(6, 8)
-        else:
-            self.speedx = random.randint(2,5)
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
@@ -135,7 +131,11 @@ class Obstaculos(pygame.sprite.Sprite):
             self.rect = self.image.get_rect()
             self.rect.x = - BARRIL_WIDTH
             self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
-            self.speedx = random.randint(2,5)
+        
+        if level == False:
+            self.speedx = random.randint(2,4)
+        else:
+            self.speedx = random.randint(2,7)
 
 
 class Vida(pygame.sprite.Sprite):
@@ -156,7 +156,7 @@ class Vida(pygame.sprite.Sprite):
         self.speedx = 3
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
@@ -182,7 +182,7 @@ class Aguaviva(pygame.sprite.Sprite):
         self.speedx = random.randint(2,5)
         self.assets = assets
 
-    def update(self):
+    def update(self,level):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
