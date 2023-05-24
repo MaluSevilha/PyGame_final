@@ -6,7 +6,7 @@ from os import path
 from config import WIDTH, HEIGHT
 
 # Importando caminhos
-from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR
+from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR
 
 # Importando tamanho dos objetos
 from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH
@@ -35,7 +35,7 @@ def load_assets():
     assets[VARA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'vara.png')).convert_alpha()
     assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
-    assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo do mar.png')).convert()
+    assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
 
     assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
@@ -57,6 +57,9 @@ def load_assets():
     # Juntando as imagens dos barris em uma lista
     IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
     assets[OBSTACULOS] = IMGS_BARRIS
+    
+    #Juntando a fonte do score à ele
+    assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
     # eletrecuta_anim = []
     # for i in range(9):
@@ -66,7 +69,6 @@ def load_assets():
     #     img = pygame.transform.scale(img, (32, 32))
     #     eletrecuta_anim.append(img)
     # assets[VARA_ANIM] = eletrecuta_anim
-    # assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
     # # Carrega os sons do jogo
     # pygame.mixer.music.load(path.join(SND_DIR, 'tgfcoder-FrozenJam-SeamlessLoop.ogg'))

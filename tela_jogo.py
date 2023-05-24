@@ -1,6 +1,6 @@
 import pygame
-from config import FPS, JOGANDO, FECHAR, MORTO, PRETO, VEL_JOGADOR
-from assets import load_assets, BACKGROUND
+from config import FPS, JOGANDO, FECHAR, MORTO, PRETO, VEL_JOGADOR, AMARELO, WIDTH
+from assets import load_assets, BACKGROUND, SCORE_FONT
 from sprites import Peixes, Vara
 
 
@@ -10,7 +10,7 @@ def game_screen(window):
 
     assets = load_assets()
 
-    # Criando um grupo de meteoros
+    # Criando grupos
     all_sprites = pygame.sprite.Group()
     all_fish = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
@@ -32,7 +32,7 @@ def game_screen(window):
 
     keys_down = {}
     score = 0
-    lives = 3
+    vidas = 3
     state = JOGANDO
 
     # ===== Loop principal =====
@@ -74,18 +74,29 @@ def game_screen(window):
         # Atualizando a posição dos meteoros
         all_sprites.update()
 
+        if state == JOGANDO:
+            pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
+
+            for peixe in pescou:
+                # Repondo os peixes pescados
+                peixe_novo = Peixes(assets)
+                all_sprites.add(peixe_novo)
+                all_fish.add(peixe_novo)
+            
+                score += 1
+
         # ----- Gera saídas
         window.fill(PRETO)  # Preenche com a cor branca
         window.blit(assets[BACKGROUND], (0, 0))
 
-        # Desenhando meteoros
+        # Desenhando peixes
         all_sprites.draw(window)
 
         # Desenhando o score
-        # text_surface = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
-        # text_rect = text_surface.get_rect()
-        # text_rect.midtop = (WIDTH / 2,  10)
-        # window.blit(text_surface, text_rect)
+        text_surface = assets[SCORE_FONT].render("{:03d}".format(score), True, AMARELO)
+        text_rect = text_surface.get_rect()
+        text_rect.midtop = (WIDTH / 2,  10)
+        window.blit(text_surface, text_rect)
 
         # # Desenhando as vidas
         # text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)

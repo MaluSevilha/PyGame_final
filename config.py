@@ -1,10 +1,11 @@
 from os import path
 
-# Estabelece o caminho que contem as figuras e sons.
+# Estabelece o caminho que contem as figuras, sons e fontes
 CENARIOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Cenários')
 PEIXES_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Peixes')
 OBJETOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Objetos')
 JOGADOR_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Jogador')
+FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')
 
 # Dados gerais do jogo.
 WIDTH = 500 # Largura da tela
