@@ -98,20 +98,18 @@ def game_screen(window):
             for peixe in pescou:
                 # Barulho do peixe sendo pescado
 
-                # Animação
-
                 # Muda a variável do peixe pescado
                 peixe_pescado = True
                 player.update2(peixe_pescado,assets)
+                pescou = []
                 
                 # Repondo os peixes pescados
                 peixe_novo = Peixes(assets)
                 all_sprites.add(peixe_novo)
                 all_fish.add(peixe_novo)
-            
-                score += 1
-
-                if score % 10 == 0 and vidas<=3:
+                
+                # Se Pontuação divisível por 10 +1 vida passa
+                if score % 10 == 0 and vidas<=3 and score>0:
                     vida_nova = Vida(assets)
                     all_sprites.add(vida_nova)
                     all_vidas.add(vida_nova)
@@ -139,11 +137,11 @@ def game_screen(window):
             for vida_pega in pegou_vida:
                 vidas += 1
 
-        if peixe_pescado == True:
-            if player.rect.y>=96:
-                peixe_pescado = False
-                player.update2(peixe_pescado,assets)
-                score += 1 
+            if peixe_pescado == True:
+                if player.rect.y<-400:
+                    score += 1
+                    peixe_pescado = False
+                    player.update2(peixe_pescado,assets) 
             
 
         # Confere se morreu
