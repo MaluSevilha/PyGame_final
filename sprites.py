@@ -119,9 +119,4 @@ class Vida(pygame.sprite.Sprite):
 
         # Recria quando sai da sala
         if self.rect.right - VIDA_TAM > WIDTH:
-            self.image = self.assets[VIDA_IMG]
-            self.mask = pygame.mask.from_surface(self.image)
-            self.rect = self.image.get_rect()
-            self.rect.x = - VIDA_TAM
-            self.rect.y = random.randint(96, HEIGHT - VIDA_TAM)
-            self.speedx = 3
+            self.kill()
