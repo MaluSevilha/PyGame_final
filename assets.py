@@ -72,7 +72,6 @@ def load_assets():
     assets[CHEIO_PEIXES] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_peixe3.png')).convert()
     assets[CHEIO_PEIXES] = pygame.transform.scale(assets[CHEIO_PEIXES], (WIDTH, HEIGHT))
 
-
     assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
@@ -80,7 +79,7 @@ def load_assets():
     assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_VERDE_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
     assets[PEIXE_AZUL_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_azul.png')).convert_alpha()
-    assets[PEIXE_AZUL_IMG] = pygame.transform.scale(assets[PEIXE_AZUL_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
+    assets[PEIXE_AZUL_IMG] = pygame.transform.scale(assets[PEIXE_AZUL_IMG],(PEIXES_WIDTH-70,PEIXES_HEIGHT-45))
 
     assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert_alpha()
     assets[BARRIL_MARROM_IMG] = pygame.transform.scale(assets[BARRIL_MARROM_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
