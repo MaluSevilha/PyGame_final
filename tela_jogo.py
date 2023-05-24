@@ -162,6 +162,24 @@ def game_screen(window):
                 all_sprites.add(barril_novo)
                 all_obstaculos.add(barril_novo)
         
+            choque = pygame.sprite.spritecollide(player, all_aguaviva, True, pygame.sprite.collide_mask)
+
+            for hit in atingiu:
+                # Barulho de choque quebrando
+
+                # Animação
+
+                # Se peixe estiver no anzol 
+                if peixe_pescado == True:
+                    peixe_pescado = False
+                    player.update2(peixe_pescado,assets)
+                else:
+                    vidas -= 1
+
+                # Repondo as águas vivas atingidas
+                aguaviva_nova = Aguaviva(assets)
+                all_sprites.add(aguaviva_nova)
+                all_obstaculos.add(aguaviva_nova)
             
             pegou_vida = pygame.sprite.spritecollide(player, all_vidas, True, pygame.sprite.collide_mask)
 
