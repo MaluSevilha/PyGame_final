@@ -87,7 +87,7 @@ def game_screen(window):
             for peixe in pescou:
                 # Barulho do peixe sendo pescado
 
-                # Animação
+                # Animação 
                 
                 # Repondo os peixes pescados
                 peixe_novo = Peixes(assets)
