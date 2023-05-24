@@ -104,7 +104,7 @@ def game_screen(window):
             
                 score += 1
 
-                if score % 5 == 0:
+                if score % 10 == 0 and vidas<=3:
                     vida_nova = Vida(assets)
                     all_sprites.add(vida_nova)
                     all_vidas.add(vida_nova)
