@@ -123,8 +123,8 @@ def load_assets():
 
     return assets
 
-def toca_musica(file,volume = 1, loop = -1):
-    pygame.mixer.music.load(path.join(file))
-    pygame.mixer.music.set_volume(volume)
-    pygame.mixer.music.play(loop)
+# def toca_musica(file,volume = 1, loop = -1):
+   # pygame.mixer.music.load(path.join(file))
+    #pygame.mixer.music.set_volume(volume)
+    #pygame.mixer.music.play(loop)
 

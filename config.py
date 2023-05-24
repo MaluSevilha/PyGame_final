@@ -27,7 +27,7 @@ BARRIL_HEIGHT = 100
 
 VIDA_TAM = 60       # É um 'quadrado'
 
-AGUA_VIVA_TAM = 100 # É um 'quadrado'
+AGUA_VIVA_TAM = 70 # É um 'quadrado'
 
 #Cores básicas
 BRANCO = (255, 255, 255)

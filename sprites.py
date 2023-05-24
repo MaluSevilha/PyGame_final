@@ -121,7 +121,7 @@ class Obstaculos(pygame.sprite.Sprite):
         if level==True:
             self.speedx = random.randint(6, 8)
         else:
-            self.sppedx = random.randint(2,5)
+            self.speedx = random.randint(2,5)
         self.assets = assets
 
     def update(self):

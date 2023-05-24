@@ -1,7 +1,7 @@
 import pygame
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
 from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES,MEDIO_PEIXES,CHEIO_PEIXES
-from sprites import Peixes, Anzol, Linha, Obstaculos, Vida
+from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
 
 def game_screen(window):
@@ -15,12 +15,14 @@ def game_screen(window):
     all_fish = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
     all_vidas = pygame.sprite.Group()
+    all_aguaviva = pygame.sprite.Group()
 
     groups = {}
     groups['all_sprites'] = all_sprites
     groups['all_fish'] = all_fish
     groups['all_obstaculos'] = all_obstaculos
     groups['all_vidas'] = all_vidas
+    groups['all_agua_vivas'] = all_aguaviva
 
     # Criando o jogador
     player = Anzol(groups, assets)
@@ -30,6 +32,9 @@ def game_screen(window):
     linha = Linha(groups, assets)
     all_sprites.add(linha)
 
+    # Nível mais difícil
+    level = False
+
     # Criando os peixes
     for i in range(3):
         peixe = Peixes(assets)
@@ -37,15 +42,17 @@ def game_screen(window):
         all_fish.add(peixe)
     
     for i in range (2):
-        obstaculo = Obstaculos(assets)
+        obstaculo = Obstaculos(assets,level)
         all_sprites.add(obstaculo)
         all_obstaculos.add(obstaculo)
+
 
     keys_down = {}
     score = 0
     vidas = 3
     state = JOGANDO
 
+    # Estado do peixe pescado
     peixe_pescado = False
 
     # ===== Loop principal =====
@@ -86,12 +93,27 @@ def game_screen(window):
                         if event.key == pygame.K_DOWN:
                             player.speedy -= VEL_JOGADOR
                             linha.speedy -= VEL_JOGADOR
-
+                        
+    
         # ----- Atualiza estado do jogo
         # Atualizando a posição dos meteoros
         all_sprites.update()
 
         if state == JOGANDO:
+
+            # Define se aumenta o nível
+            if score>= 4:
+                level = True
+            else: 
+                level = False
+
+            if level == True:
+                if len(all_aguaviva)<=1:
+                    if score%5==0:
+                        aguaviva = Aguaviva(assets)
+                        all_sprites.add(aguaviva)
+                        all_aguaviva.add(aguaviva)
+            
             if peixe_pescado==False:
                 pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
@@ -127,7 +149,7 @@ def game_screen(window):
                     vidas -= 1
 
                 # Repondo os barris atingidos
-                barril_novo = Obstaculos(assets)
+                barril_novo = Obstaculos(assets,level)
                 all_sprites.add(barril_novo)
                 all_obstaculos.add(barril_novo)
         
