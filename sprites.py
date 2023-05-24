@@ -1,7 +1,7 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM
-from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_IMG
+from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_IMG, AGUA_VIVA_IMG
 
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -72,6 +72,7 @@ class Anzol(pygame.sprite.Sprite):
         else:
             self.image = assets[ANZOL_IMG]
 
+
 class Linha(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
@@ -103,7 +104,7 @@ class Linha(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT          
 
 class Obstaculos(pygame.sprite.Sprite):
-    def __init__(self, assets):
+    def __init__(self, assets,level):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -116,8 +117,11 @@ class Obstaculos(pygame.sprite.Sprite):
         self.rect.x = -BARRIL_WIDTH
         self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
 
-        # Definindo velocidades
-        self.speedx = random.randint(2, 5)
+        # Definindo velocidades (quando level for true, aumentou o nível de dificuldade)
+        if level==True:
+            self.speedx = random.randint(6, 8)
+        else:
+            self.sppedx = random.randint(2,5)
         self.assets = assets
 
     def update(self):
@@ -132,6 +136,7 @@ class Obstaculos(pygame.sprite.Sprite):
             self.rect.x = - BARRIL_WIDTH
             self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
             self.speedx = random.randint(2,5)
+
 
 class Vida(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -157,4 +162,30 @@ class Vida(pygame.sprite.Sprite):
 
         # Recria quando sai da sala
         if self.rect.right - VIDA_TAM > WIDTH:
+            self.kill()
+
+class Aguaviva(pygame.sprite.Sprite):
+    def __init__(self, assets):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+
+        # Definindo imagem
+        self.image = assets[AGUA_VIVA_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+
+        # Criando retângulode referência
+        self.rect = self.image.get_rect()
+        self.rect.x = -AGUA_VIVA_TAM
+        self.rect.y = random.randint(96, HEIGHT - AGUA_VIVA_TAM)
+
+        # Definindo velocidades
+        self.speedx = random.randint(2,5)
+        self.assets = assets
+
+    def update(self):
+        # Atualizando a posição do obstáculo
+        self.rect.x += self.speedx
+
+        # Recria quando sai da sala
+        if self.rect.right - AGUA_VIVA_TAM > WIDTH:
             self.kill()
