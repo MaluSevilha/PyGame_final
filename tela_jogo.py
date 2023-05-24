@@ -82,12 +82,14 @@ def game_screen(window):
         all_sprites.update()
 
         if state == JOGANDO:
-            pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
+            pescou = pygame.sprite.spritecollide(player, all_fish, False, pygame.sprite.collide_mask)
 
             for peixe in pescou:
                 # Barulho do peixe sendo pescado
 
                 # Animação
+
+                # Atualiza o sprite do peixe
                 
                 # Repondo os peixes pescados
                 peixe_novo = Peixes(assets)

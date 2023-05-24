@@ -33,6 +33,8 @@ class Peixes(pygame.sprite.Sprite):
             self.rect.x = -PEIXES_WIDTH
             self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
             self.speedx = random.randint(2,5)
+
+        # Peixe colide 
     
 class Vara(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
