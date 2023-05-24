@@ -19,6 +19,7 @@ BACKGROUND = 'background'
 PEIXE_IMG = 'peixe_img'
 PEIXE_LARANJA_IMG = 'peixe_laranja'
 PEIXE_VERDE_IMG = 'peixe_verde'
+PEIXE_AZUL_IMG = 'peixe_azul'
 
 # ---- Imagens: Objetos
 BARRIL_MARROM_IMG = 'barril_marrom'
@@ -65,6 +66,9 @@ def load_assets():
     assets[PEIXE_VERDE_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_verde.png')).convert_alpha()
     assets[PEIXE_VERDE_IMG] = pygame.transform.scale(assets[PEIXE_VERDE_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
 
+    assets[PEIXE_AZUL_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_azul.png')).convert_alpha()
+    assets[PEIXE_AZUL_IMG] = pygame.transform.scale(assets[PEIXE_AZUL_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
+
     assets[BARRIL_MARROM_IMG] = pygame.image.load(path.join(OBJETOS_DIR, 'barril_marrom.png')).convert_alpha()
     assets[BARRIL_MARROM_IMG] = pygame.transform.scale(assets[BARRIL_MARROM_IMG],(BARRIL_WIDTH,BARRIL_HEIGHT))
 
@@ -75,7 +79,7 @@ def load_assets():
     assets[VIDA_IMG] = pygame.transform.scale(assets[VIDA_IMG],(VIDA_TAM, VIDA_TAM))
 
     # Juntando as imagens dos peixes em uma lista
-    IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG]]
+    IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG,],assets[PEIXE_AZUL_IMG]]
     assets[LISTA_PEIXES] = IMGS_PEIXES
 
     # Juntando as imagens dos barris em uma lista
