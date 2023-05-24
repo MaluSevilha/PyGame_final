@@ -14,6 +14,9 @@ from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, B
 # Definindo chaves do dicionário assets
 # ---- Cenários
 BACKGROUND = 'background'
+POUCOS_PEIXES = 'poucos_peixes'
+MEDIO_PEIXES = 'médio_peixes'
+CHEIO_PEIXES = 'cheio_peixes'
 
 # ---- Imagens: Peixes
 PEIXE_IMG = 'peixe_img'
@@ -58,6 +61,16 @@ def load_assets():
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[POUCOS_PEIXES] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_peixe1.png')).convert()
+    assets[POUCOS_PEIXES] = pygame.transform.scale(assets[POUCOS_PEIXES], (WIDTH, HEIGHT))
+
+    assets[MEDIO_PEIXES] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_peixe2.png')).convert()
+    assets[MEDIO_PEIXES] = pygame.transform.scale(assets[MEDIO_PEIXES], (WIDTH, HEIGHT))
+
+    assets[CHEIO_PEIXES] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_peixe3.png')).convert()
+    assets[CHEIO_PEIXES] = pygame.transform.scale(assets[CHEIO_PEIXES], (WIDTH, HEIGHT))
+
 
     assets[PEIXE_LARANJA_IMG] = pygame.image.load(path.join(PEIXES_DIR, 'peixe_laranja.png')).convert_alpha()
     assets[PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[PEIXE_LARANJA_IMG],(PEIXES_WIDTH,PEIXES_HEIGHT))
