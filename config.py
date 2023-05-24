@@ -6,6 +6,8 @@ PEIXES_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Peixes')
 OBJETOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Objetos')
 JOGADOR_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Jogador')
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')
+SOM_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
+
 
 # Dados gerais do jogo.
 WIDTH = 500 # Largura da tela

@@ -6,7 +6,7 @@ from os import path
 from config import WIDTH, HEIGHT
 
 # Importando caminhos
-from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR
+from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR, SOM_DIR
 
 # Importando tamanho dos objetos
 from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH, VIDA_TAM
@@ -112,8 +112,8 @@ def load_assets():
     # assets[VARA_ANIM] = eletrecuta_anim
 
     # # Carrega os sons do jogo
-    # pygame.mixer.music.load(path.join(SND_DIR, 'tgfcoder-FrozenJam-SeamlessLoop.ogg'))
-    # pygame.mixer.music.set_volume(0.4)
+    pygame.mixer.music.load(path.join(SOM_DIR, 'Club Penguin Music - Ice Fishing.mp3'))
+    pygame.mixer.music.set_volume(0.4)
     # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
     # assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl6.wav'))
     # assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
