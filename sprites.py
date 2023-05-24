@@ -1,7 +1,7 @@
 import random
 import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, VEL_JOGADOR, JOGADOR_WIDTH, JOGADOR_HEIGHT
-from assets import VARA_IMG, LISTA_PEIXES
+from assets import VARA_IMG, ANZOL_IMG, LISTA_PEIXES
 
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -44,6 +44,7 @@ class Vara(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
         # Cria o retângulo de referência
+        # ---- Vara
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = JOGADOR_HEIGHT - 10
@@ -54,7 +55,7 @@ class Vara(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self):
-        # Atualização da posição da nave
+        # Atualização da posição da vara
         self.rect.y += self.speedy
 
         # Mantem dentro da tela

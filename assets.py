@@ -11,21 +11,36 @@ from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_
 # Importando tamanho dos objetos
 from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH
 
-#Definindo chaves do dicionário assets
+# Definindo chaves do dicionário assets
+# ---- Cenários
 BACKGROUND = 'background'
+
+# ---- Imagens: Peixes
 PEIXE_IMG = 'peixe_img'
-VARA_IMG = 'vara_img'
-VARA_ANIM = 'vara_anim'
-SCORE_FONT = 'score_font'
-PESCOU_SOUND = 'pescou_sound'
-PERDEU_ISCA_SOUND = 'perdeu_isca_sound'
-JOGOU_VARA_SOUND = 'jogou_vara_sound'
-BACKGROUND_SOUND = 'background_sound'
 PEIXE_LARANJA_IMG = 'peixe_laranja'
 PEIXE_VERDE_IMG = 'peixe_verde'
 BARRIL_MARROM_IMG = 'barril_marrom'
 BARRIL_LARANJA_IMG = 'barril_laranja'
-OBSTACULOS = "imgs_barris"
+
+# ---- Imagens: jogador
+VARA_IMG = 'vara_img'
+LINHA_IMG = 'linha_img'
+ANZOL_IMG = 'anzol_img'
+
+# ---- Animação: Jogador
+VARA_ANIM = 'vara_anim'
+
+# ---- Fontes
+SCORE_FONT = 'score_font'
+
+# ---- Sons
+PESCOU_SOUND = 'pescou_sound'
+PERDEU_ISCA_SOUND = 'perdeu_isca_sound'
+JOGOU_VARA_SOUND = 'jogou_vara_sound'
+BACKGROUND_SOUND = 'background_sound'
+
+# ---- Lista de imagens de peixes e obstáculos
+LISTA_OBSTACULOS = "imgs_barris"
 LISTA_PEIXES = "imgs_peixes"
 
 def load_assets():
@@ -34,6 +49,12 @@ def load_assets():
     
     assets[VARA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'vara.png')).convert_alpha()
     assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
+
+    assets[LINHA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'linha.png')).convert_alpha()
+    assets[LINHA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+
+    assets[ANZOL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol.png')).convert_alpha()
+    assets[ANZOL_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, 50))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
@@ -56,7 +77,7 @@ def load_assets():
 
     # Juntando as imagens dos barris em uma lista
     IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
-    assets[OBSTACULOS] = IMGS_BARRIS
+    assets[LISTA_OBSTACULOS] = IMGS_BARRIS
     
     #Juntando a fonte do score à ele
     assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
