@@ -1,7 +1,7 @@
 import pygame
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
 from assets import load_assets, BACKGROUND, SCORE_FONT
-from sprites import Peixes, Vara, Obstaculos, Vida
+from sprites import Peixes, Anzol, Linha, Obstaculos, Vida
 
 
 def game_screen(window):
@@ -23,8 +23,12 @@ def game_screen(window):
     groups['all_vidas'] = all_vidas
 
     # Criando o jogador
-    player = Vara(groups, assets)
+    player = Anzol(groups, assets)
     all_sprites.add(player)
+
+    # Criando a Linha
+    linha = Linha(groups, assets)
+    all_sprites.add(linha)
 
     # Criando os peixes
     for i in range(3):
@@ -60,29 +64,33 @@ def game_screen(window):
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
 
-                    # Dependendo da tecla, altera a velocidade.
+                    # Dependendo da tecla, altera a velocidade do anzol e da linha.
                     keys_down[event.key] = True
                     if event.key == pygame.K_UP:
-                        player.speedy -= 8
+                        player.speedy -= VEL_JOGADOR
+                        linha.speedy -= VEL_JOGADOR
                     if event.key == pygame.K_DOWN:
-                        player.speedy += 8
+                        player.speedy += VEL_JOGADOR
+                        linha.speedy += VEL_JOGADOR
                     
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
 
-                    # Dependendo da tecla, altera a velocidade.
+                    # Dependendo da tecla, altera a velocidade do anzol e da linha.
                     if event.key in keys_down and keys_down[event.key]:
                         if event.key == pygame.K_UP:
                             player.speedy += VEL_JOGADOR
+                            linha.speedy += VEL_JOGADOR
                         if event.key == pygame.K_DOWN:
                             player.speedy -= VEL_JOGADOR
+                            linha.speedy -= VEL_JOGADOR
 
         # ----- Atualiza estado do jogo
         # Atualizando a posição dos meteoros
         all_sprites.update()
 
         if state == JOGANDO:
-            pescou = pygame.sprite.spritecollide(player, all_fish, False, pygame.sprite.collide_mask)
+            pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
             for peixe in pescou:
                 # Barulho do peixe sendo pescado

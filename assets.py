@@ -49,15 +49,12 @@ LISTA_PEIXES = "imgs_peixes"
 def load_assets():
     # Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
-    
-    assets[VARA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'vara.png')).convert_alpha()
-    assets[VARA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT))
 
     assets[LINHA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'linha.png')).convert_alpha()
-    assets[LINHA_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+    assets[LINHA_IMG] = pygame.transform.scale(assets[LINHA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[ANZOL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol.png')).convert_alpha()
-    assets[ANZOL_IMG] = pygame.transform.scale(assets[VARA_IMG], (JOGADOR_WIDTH, 50))
+    assets[ANZOL_IMG] = pygame.transform.scale(assets[ANZOL_IMG], (JOGADOR_WIDTH, 50))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))

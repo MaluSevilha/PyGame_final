@@ -1,7 +1,7 @@
 import random
 import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM
-from assets import VARA_IMG, LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG
 
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -33,16 +33,14 @@ class Peixes(pygame.sprite.Sprite):
             self.rect.x = -PEIXES_WIDTH
             self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
             self.speedx = random.randint(2,5)
-
-        # Peixe colide 
     
-class Vara(pygame.sprite.Sprite):
+class Anzol(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
         
         # Definindo a imagem da vara
-        self.image = assets[VARA_IMG]
+        self.image = assets[ANZOL_IMG]
         self.mask = pygame.mask.from_surface(self.image)
 
         # Cria o retângulo de referência
@@ -65,6 +63,36 @@ class Vara(pygame.sprite.Sprite):
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
+
+class Linha(pygame.sprite.Sprite):
+    def __init__(self, groups, assets):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        
+        # Definindo a imagem da Linha
+        self.image = assets[LINHA_IMG]
+        self.mask = pygame.mask.from_surface(self.image)
+
+        # Cria o retângulo de referência
+        # ---- Linha
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = JOGADOR_HEIGHT - 10
+
+        # Cria variáveis da vara e grupos
+        self.speedy = 0
+        self.groups = groups
+        self.assets = assets
+
+    def update(self):
+        # Atualização da posição da vara
+        self.rect.y += self.speedy
+
+        # Mantem dentro da tela
+        if self.rect.top + JOGADOR_HEIGHT - 10 < 0:
+            self.rect.bottom = 10
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT          
 
 class Obstaculos(pygame.sprite.Sprite):
     def __init__(self, assets):
