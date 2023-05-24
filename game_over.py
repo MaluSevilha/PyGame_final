@@ -1,7 +1,7 @@
 import pygame
 from os import path
 
-from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT
+from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT
 
 
 def game_over(tela):
@@ -29,7 +29,7 @@ def game_over(tela):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 if pos[0]>=155 and pos[0]<=331 and pos[1]>=408 and pos[1]<=493:
-                    state = JOGANDO
+                    state = INICIO
                     rodando = False
 
         # A cada loop, redesenha o fundo e os sprites

@@ -1,7 +1,7 @@
 import pygame
 from config import FPS, JOGANDO, FECHAR, MORTO, PRETO, VEL_JOGADOR, AMARELO, WIDTH
 from assets import load_assets, BACKGROUND, SCORE_FONT
-from sprites import Peixes, Vara
+from sprites import Peixes, Vara, Obstaculos
 
 
 def game_screen(window):
@@ -29,6 +29,11 @@ def game_screen(window):
         peixe = Peixes(assets)
         all_sprites.add(peixe)
         all_fish.add(peixe)
+    
+    for i in range (2):
+        obstaculo = Obstaculos(assets)
+        all_sprites.add(obstaculo)
+        all_obstaculos.add(obstaculo)
 
     keys_down = {}
     score = 0
@@ -84,6 +89,22 @@ def game_screen(window):
                 all_fish.add(peixe_novo)
             
                 score += 1
+            
+            atingiu = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
+
+            for hit in atingiu:
+                # Barulho de barril quebrando
+
+                # Repondo os barris atingidos
+                barril_novo = Obstaculos(assets)
+                all_sprites.add(barril_novo)
+                all_obstaculos.add(barril_novo)
+            
+                vidas -= 1
+
+        # Confere se morreu
+        if vidas == 0:
+            state = MORTO   
 
         # ----- Gera saídas
         window.fill(PRETO)  # Preenche com a cor branca
