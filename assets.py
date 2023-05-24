@@ -79,7 +79,7 @@ def load_assets():
     assets[VIDA_IMG] = pygame.transform.scale(assets[VIDA_IMG],(VIDA_TAM, VIDA_TAM))
 
     # Juntando as imagens dos peixes em uma lista
-    IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG,],assets[PEIXE_AZUL_IMG]]
+    IMGS_PEIXES = [assets[PEIXE_LARANJA_IMG], assets[PEIXE_VERDE_IMG],assets[PEIXE_AZUL_IMG]]
     assets[LISTA_PEIXES] = IMGS_PEIXES
 
     # Juntando as imagens dos barris em uma lista
