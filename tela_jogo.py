@@ -164,7 +164,7 @@ def game_screen(window):
         
             choque = pygame.sprite.spritecollide(player, all_aguaviva, True, pygame.sprite.collide_mask)
 
-            for hit in atingiu:
+            for choq in choque:
                 # Barulho de choque quebrando
 
                 # Animação
