@@ -46,6 +46,8 @@ def game_screen(window):
     vidas = 3
     state = JOGANDO
 
+    peixe_pescado = False
+
     # ===== Loop principal =====
     # pygame.mixer.music.play(loops=-1)
     while state != FECHAR and state != MORTO:
@@ -90,12 +92,17 @@ def game_screen(window):
         all_sprites.update()
 
         if state == JOGANDO:
-            pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
+            if peixe_pescado==False:
+                pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
             for peixe in pescou:
                 # Barulho do peixe sendo pescado
 
                 # Animação
+
+                # Muda a variável do peixe pescado
+                peixe_pescado = True
+                player.update2(peixe_pescado,assets)
                 
                 # Repondo os peixes pescados
                 peixe_novo = Peixes(assets)
@@ -114,17 +121,30 @@ def game_screen(window):
             for hit in atingiu:
                 # Barulho de barril quebrando
 
+                # Se peixe estiver no anzol 
+                if peixe_pescado == True:
+                    peixe_pescado = False
+                    player.update2(peixe_pescado,assets)
+                else:
+                    vidas -= 1
+
                 # Repondo os barris atingidos
                 barril_novo = Obstaculos(assets)
                 all_sprites.add(barril_novo)
                 all_obstaculos.add(barril_novo)
-            
-                vidas -= 1
+        
             
             pegou_vida = pygame.sprite.spritecollide(player, all_vidas, True, pygame.sprite.collide_mask)
 
             for vida_pega in pegou_vida:
                 vidas += 1
+
+        if peixe_pescado == True:
+            if player.rect.y>=96:
+                peixe_pescado = False
+                player.update2(peixe_pescado,assets)
+                score += 1 
+            
 
         # Confere se morreu
         if vidas == 0:

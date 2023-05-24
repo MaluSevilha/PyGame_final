@@ -1,7 +1,7 @@
 import random
 import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM
-from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_IMG
 
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, assets):
@@ -63,6 +63,14 @@ class Anzol(pygame.sprite.Sprite):
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
+
+    
+    def update2(self,peixe_pescado,assets):
+        # Muda a imagem se peixe estiver no anzol
+        if peixe_pescado == True:
+            self.image = assets[ANZOL_PEIXE_IMG]
+        else:
+            self.image = assets[ANZOL_IMG]
 
 class Linha(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
