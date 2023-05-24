@@ -1,6 +1,6 @@
 import pygame
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
-from assets import load_assets, BACKGROUND, SCORE_FONT
+from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES,MEDIO_PEIXES,CHEIO_PEIXES
 from sprites import Peixes, Anzol, Linha, Obstaculos, Vida
 
 
@@ -133,6 +133,14 @@ def game_screen(window):
         # ----- Gera saídas
         window.fill(PRETO)  # Preenche com a cor branca
         window.blit(assets[BACKGROUND], (0, 0))
+
+        # Altera o fundo dependendo do score 
+        if score>=5:
+            window.blit(assets[POUCOS_PEIXES], (0,0))
+        if score>= 15:
+            window.blit(assets[MEDIO_PEIXES], (0,0))
+        if score>= 30:
+            window.blit(assets[CHEIO_PEIXES],(0,0))
 
         # Desenhando peixes
         all_sprites.draw(window)
