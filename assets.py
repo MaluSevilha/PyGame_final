@@ -64,10 +64,10 @@ def load_assets():
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_VERDE_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
-    assets[ANZOL_PEIXE_LARANJA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
+    assets[ANZOL_PEIXE_LARANJA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_laranja.png')).convert_alpha()
     assets[ANZOL_PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_LARANJA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
-    assets[ANZOL_PEIXE_AZUL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
+    assets[ANZOL_PEIXE_AZUL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_azul.png')).convert_alpha()
     assets[ANZOL_PEIXE_AZUL_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_AZUL_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
