@@ -72,7 +72,6 @@ class Anzol(pygame.sprite.Sprite):
         else:
             self.image = assets[ANZOL_IMG]
 
-
 class Linha(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
@@ -139,7 +138,6 @@ class Obstaculos(pygame.sprite.Sprite):
 
         if level2 == True:
             self.speedx = random.randint(10,15)
-
 
 class Vida(pygame.sprite.Sprite):
     def __init__(self, assets):
