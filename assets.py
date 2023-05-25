@@ -34,7 +34,9 @@ AGUA_VIVA_IMG = 'agua viva'
 VARA_IMG = 'vara_img'
 LINHA_IMG = 'linha_img'
 ANZOL_IMG = 'anzol_img'
-ANZOL_PEIXE_IMG = 'peixe no anzol'
+ANZOL_PEIXE_VERDE_IMG = 'peixe_verde_anzol_img'
+ANZOL_PEIXE_LARANJA_IMG = 'peixe_laranja_anzol_img'
+ANZOL_PEIXE_AZUL_IMG = 'peixe_azul_anzol_img'
 
 # ---- Fontes
 SCORE_FONT = 'score_font'
@@ -59,8 +61,14 @@ def load_assets():
     assets[ANZOL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol.png')).convert_alpha()
     assets[ANZOL_IMG] = pygame.transform.scale(assets[ANZOL_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
-    assets[ANZOL_PEIXE_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
-    assets[ANZOL_PEIXE_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+    assets[ANZOL_PEIXE_VERDE_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
+    assets[ANZOL_PEIXE_VERDE_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_VERDE_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+
+    assets[ANZOL_PEIXE_LARANJA_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
+    assets[ANZOL_PEIXE_LARANJA_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_LARANJA_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+
+    assets[ANZOL_PEIXE_AZUL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
+    assets[ANZOL_PEIXE_AZUL_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_AZUL_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
