@@ -1,28 +1,45 @@
+# Importando bibliotecas
 import pygame
+
+# Importando arquivos
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
-from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES,MEDIO_PEIXES,CHEIO_PEIXES
+from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES, MEDIO_PEIXES, CHEIO_PEIXES
+from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG
 from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
-
+# Fazendo a função da tela do jogo
 def game_screen(window):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
+    # Carregando o dicionário assets
     assets = load_assets()
 
     # Criando grupos
     all_sprites = pygame.sprite.Group()
-    all_fish = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
     all_vidas = pygame.sprite.Group()
     all_aguaviva = pygame.sprite.Group()
 
+    # Criando grupos de peixes
+    all_fish = pygame.sprite.Group()
+    all_orange_fish = pygame.sprite.Group()
+    all_blue_fish = pygame.sprite.Group()
+    all_green_fish = pygame.sprite.Group()
+
+    # Adicionando ao dicionário groups
     groups = {}
     groups['all_sprites'] = all_sprites
-    groups['all_fish'] = all_fish
     groups['all_obstaculos'] = all_obstaculos
     groups['all_vidas'] = all_vidas
     groups['all_agua_vivas'] = all_aguaviva
+
+    # Adicionando os grupos de peixes
+    groups['all_fish'] = all_fish
+    groups['all_green_fish'] = all_green_fish
+    groups['all_blue_fish'] = all_blue_fish
+    groups['all_orange_fish'] = all_orange_fish
+
 
     # Criando o jogador
     player = Anzol(groups, assets)
@@ -34,12 +51,24 @@ def game_screen(window):
 
     # Nível mais difícil
     level = False
+
     # Nível máximo
     level2 = False
 
     # Criando os peixes
     for i in range(3):
         peixe = Peixes(assets)
+
+        #Conferindo cor do peixe e o adicionando ao grupo
+        imagem_peixe = peixe.image
+        if peixe.image == assets[PEIXE_AZUL_IMG]:
+            all_blue_fish.add(peixe)
+        elif peixe.image == assets[PEIXE_VERDE_IMG]:
+            all_green_fish.add(peixe)
+        else:
+            all_orange_fish.add(peixe)
+
+        # Adcionando aos demais grupos
         all_sprites.add(peixe)
         all_fish.add(peixe)
     
