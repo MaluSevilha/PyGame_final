@@ -15,6 +15,9 @@ def game_screen(window):
     # Carregando o dicionário assets
     assets = load_assets()
 
+    #Criando imagem do anzol
+    IMAGEM_ANZOL = assets[ANZOL_IMG]
+
     # Criando grupos
     all_sprites = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
@@ -39,6 +42,11 @@ def game_screen(window):
     groups['all_green_fish'] = all_green_fish
     groups['all_blue_fish'] = all_blue_fish
     groups['all_orange_fish'] = all_orange_fish
+
+    # Peixes pescados de cada cor
+    pescados_azul = 0
+    pescados_laranja = 0
+    pescados_verde = 0
 
 
     # Criando o jogador
@@ -166,53 +174,56 @@ def game_screen(window):
             
             # Se não tiver pescado um peixe
             if peixe_pescado == False:
+                #Lista de colisão com peixes de determinadas cores
+                pescou_azul = pygame.sprite.spritecollide(player, all_blue_fish, False, pygame.sprite.collide_mask)
+                pescou_verde = pygame.sprite.spritecollide(player, all_green_fish, False, pygame.sprite.collide_mask)
+                pescou_laranja = pygame.sprite.spritecollide(player, all_orange_fish, False, pygame.sprite.collide_mask)
+
                 #Lista de colisão com todos os peixes
                 pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
-                #Lista de colisão com peixes de determinadas cores
-                pescou_azul = pygame.sprite.spritecollide(player, all_blue_fish, True, pygame.sprite.collide_mask)
-                pescou_verde = pygame.sprite.spritecollide(player, all_green_fish, True, pygame.sprite.collide_mask)
-                pescou_laranja = pygame.sprite.spritecollide(player, all_orange_fish, True, pygame.sprite.collide_mask)
+                #Para cada peixe pescado
+                for peixe in pescou:
+                    # Barulho do peixe sendo pescado
 
-            #Para cad peixe pescado
-            for peixe in pescou:
-                # Barulho do peixe sendo pescado
+                    # Muda a variável do peixe pescado
+                    peixe_pescado = True
 
-                # Muda a variável do peixe pescado
-                peixe_pescado = True
+                    # Confere a cor do peixe pescado
+                    if (len(pescou_azul) != 0 and pescados_azul == 0) or (len(pescou_azul) - pescados_azul != 0):
+                        IMAGEM_ANZOL = assets[ANZOL_PEIXE_AZUL_IMG]
+                        pescados_azul += 1
+                    elif (len(pescou_verde) != 0 and pescados_verde == 0) or (len(pescou_verde) - pescados_verde != 0):
+                        IMAGEM_ANZOL = assets[ANZOL_PEIXE_VERDE_IMG]
+                        pescados_verde += 1
+                    else:
+                        IMAGEM_ANZOL = assets[ANZOL_PEIXE_LARANJA_IMG]
+                        pescados_laranja += 1
 
-                # Confere a cor do peixe pescado
-                if len(pescou_azul) != 0:
-                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_AZUL_IMG]
-                elif len(pescou_verde) != 0:
-                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_VERDE_IMG]
-                else:
-                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_LARANJA_IMG]
+                    # Atualiza a imagem do azol com o peixe da cor que pescou
+                    player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
 
-                # Atualiza a imagem do azol com o peixe da cor que pescou
-                player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
-
-                # Delimita que um peixe pode ser pescado por vez
-                pescou = []
-                pescou_laranja = []
-                pescou_verde = []
-                pescou_azul = []
+                    # Delimita que um peixe pode ser pescado por vez
+                    pescou = []
+                    pescou_laranja = []
+                    pescou_verde = []
+                    pescou_azul = []
                 
-                # Repondo os peixes pescados
-                peixe_novo = Peixes(assets)
+                    # Repondo os peixes pescados
+                    peixe_novo = Peixes(assets)
 
-                #Conferindo cor do peixe novo e o adicionando ao grupo
-                imagem_peixe = peixe.image
-                if peixe.image == assets[PEIXE_AZUL_IMG]:
-                    all_blue_fish.add(peixe)
-                elif peixe.image == assets[PEIXE_VERDE_IMG]:
-                    all_green_fish.add(peixe)
-                else:
-                    all_orange_fish.add(peixe)
+                    #Conferindo cor do peixe novo e o adicionando ao grupo
+                    imagem_peixe = peixe.image
+                    if peixe.image == assets[PEIXE_AZUL_IMG]:
+                        all_blue_fish.add(peixe)
+                    elif peixe.image == assets[PEIXE_VERDE_IMG]:
+                        all_green_fish.add(peixe)
+                    else:
+                        all_orange_fish.add(peixe)
 
-                # Adicionando-o aos outros grupos
-                all_sprites.add(peixe_novo)
-                all_fish.add(peixe_novo)
+                    # Adicionando-o aos outros grupos
+                    all_sprites.add(peixe_novo)
+                    all_fish.add(peixe_novo)
                 
                 # Se Pontuação divisível por 10: +1 vida passa
                 if score % 10 == 0 and vidas <= 3 and score > 0:

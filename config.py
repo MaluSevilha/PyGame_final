@@ -7,6 +7,11 @@ OBJETOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Objetos')
 JOGADOR_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Jogador')
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')
 
+# Peixes pescados de cada cor
+pescados_azul = 0
+pescados_laranja = 0
+pescados_verde = 0
+
 # Dados gerais do jogo.
 WIDTH = 500 # Largura da tela
 HEIGHT = 600 # Altura da tela
@@ -27,7 +32,7 @@ BARRIL_HEIGHT = 100
 
 VIDA_TAM = 60       # É um 'quadrado'
 
-AGUA_VIVA_TAM = 70 # É um 'quadrado'
+AGUA_VIVA_TAM = 70  # É um 'quadrado'
 
 #Cores básicas
 BRANCO = (255, 255, 255)
