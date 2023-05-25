@@ -12,7 +12,6 @@ from game_over import game_over
 pygame.init()
 #pygame.mixer.init()
 
-
 # ----- Gera tela principal
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Fishing Fox')

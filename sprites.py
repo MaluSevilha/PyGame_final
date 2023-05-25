@@ -54,7 +54,7 @@ class Anzol(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self,level,level2):
+    def update(self, level, level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -65,10 +65,10 @@ class Anzol(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
 
     
-    def update2(self,peixe_pescado,assets):
+    def update2(self, peixe_pescado, IMAGEM_ANZOL, assets):
         # Muda a imagem se peixe estiver no anzol
         if peixe_pescado == True:
-            self.image = assets[ANZOL_PEIXE_VERDE_IMG]
+            self.image = IMAGEM_ANZOL
         else:
             self.image = assets[ANZOL_IMG]
 
