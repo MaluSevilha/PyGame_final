@@ -34,6 +34,8 @@ def game_screen(window):
 
     # Nível mais difícil
     level = False
+    # Nível máximo
+    level2 = False
 
     # Criando os peixes
     for i in range(3):
@@ -97,7 +99,7 @@ def game_screen(window):
     
         # ----- Atualiza estado do jogo
         # Atualizando a posição dos sprites
-        all_sprites.update(level)
+        all_sprites.update(level,level2)
 
         if state == JOGANDO:
             
@@ -107,6 +109,11 @@ def game_screen(window):
                 level = True
             else: 
                 level = False
+
+            if score>=45:
+                level2 = True
+            else:
+                level2 = False
 
             # Aumenta número de barril
             if score>=20:
@@ -165,7 +172,7 @@ def game_screen(window):
             choque = pygame.sprite.spritecollide(player, all_aguaviva, True, pygame.sprite.collide_mask)
 
             for choq in choque:
-                # Barulho de choque quebrando
+                # Barulho de choque 
 
                 # Animação
 

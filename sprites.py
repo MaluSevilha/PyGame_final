@@ -21,7 +21,7 @@ class Peixes(pygame.sprite.Sprite):
         self.speedx = random.randint(2, 5)
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualização da posição da nave
         self.rect.x += self.speedx
 
@@ -54,7 +54,7 @@ class Anzol(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -93,7 +93,7 @@ class Linha(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -120,7 +120,7 @@ class Obstaculos(pygame.sprite.Sprite):
 
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
@@ -136,6 +136,9 @@ class Obstaculos(pygame.sprite.Sprite):
             self.speedx = random.randint(2,4)
         else:
             self.speedx = random.randint(2,7)
+
+        if level2 == True:
+            self.speedx = random.randint(10,15)
 
 
 class Vida(pygame.sprite.Sprite):
@@ -156,7 +159,7 @@ class Vida(pygame.sprite.Sprite):
         self.speedx = 3
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
@@ -182,10 +185,13 @@ class Aguaviva(pygame.sprite.Sprite):
         self.speedx = random.randint(2,5)
         self.assets = assets
 
-    def update(self,level):
+    def update(self,level,level2):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
         # Recria quando sai da sala
         if self.rect.right - AGUA_VIVA_TAM > WIDTH:
             self.kill()
+
+        if level2==True :
+            self.speedx = random.randint(6,9)
