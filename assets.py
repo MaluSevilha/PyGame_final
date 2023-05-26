@@ -51,7 +51,9 @@ BACKGROUND_SOUND = 'background_sound'
 LISTA_OBSTACULOS = "imgs_barris"
 LISTA_PEIXES = "imgs_peixes"
 
+# Função que cria o dicionário assets
 def load_assets():
+    
     # Criando o dicionário assets e adicionando as imagens à ele
     assets = {}
 

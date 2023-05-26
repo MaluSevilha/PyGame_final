@@ -159,15 +159,20 @@ def game_screen(window):
                         all_sprites.add(aguaviva)
                         all_aguaviva.add(aguaviva)
             
-            if peixe_pescado==False:
+            # Confere se algum peixe foi pescado
+            if peixe_pescado == False:
                 pescou = pygame.sprite.spritecollide(player, all_fish, True, pygame.sprite.collide_mask)
 
+            # Passa pelos peixes pescados
             for peixe in pescou:
+                print(peixe)
                 # Barulho do peixe sendo pescado
 
                 # Muda a variável do peixe pescado
                 peixe_pescado = True
                 player.update2(peixe_pescado,assets)
+
+                # Garante que só um peixe seja pescado por vez
                 pescou = []
                 
                 # Repondo os peixes pescados
@@ -181,50 +186,64 @@ def game_screen(window):
                     all_sprites.add(vida_nova)
                     all_vidas.add(vida_nova)
             
+            # Cria lista com colisões com barril
             atingiu = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
 
+            # Passa por cada hit com barril
             for hit in atingiu:
+
                 # Barulho de barril quebrando
 
-                # Se peixe estiver no anzol 
+                # Se peixe estiver no anzol
                 if peixe_pescado == True:
+                    # Não perde uma vida, mas perde o peixe
                     peixe_pescado = False
                     player.update2(peixe_pescado,assets)
                 else:
+                    # Perde uma vida
                     vidas -= 1
 
                 # Repondo os barris atingidos
                 barril_novo = Obstaculos(assets)
                 all_sprites.add(barril_novo)
                 all_obstaculos.add(barril_novo)
-        
+
+            # Confere choques com águas vivas
             choque = pygame.sprite.spritecollide(player, all_aguaviva, True, pygame.sprite.collide_mask)
 
-            for choq in choque:
+            # Confere cada contato com águas vivas
+            for agua_viva in choque:
                 # Barulho de choque 
 
                 # Animação
 
                 # Se peixe estiver no anzol 
                 if peixe_pescado == True:
+                    # Não perde duas vidas, mas perde o peixe
                     peixe_pescado = False
                     player.update2(peixe_pescado,assets)
                 else:
-                    vidas -= 1
+                    # Perde duas vidas
+                    vidas -= 2
 
                 # Repondo as águas vivas atingidas
                 aguaviva_nova = Aguaviva(assets)
                 all_sprites.add(aguaviva_nova)
                 all_obstaculos.add(aguaviva_nova)
             
+            # Confere se o jogador pegou uma vida
             pegou_vida = pygame.sprite.spritecollide(player, all_vidas, True, pygame.sprite.collide_mask)
 
+            # Adiciona cada vida pega as vidas do jogador
             for vida_pega in pegou_vida:
                 vidas += 1
-
+            
+            # Se tiver pego um peixe
             if peixe_pescado == True:
-                if player.rect.y<-400:
+                # Confere se deixou na rede de pesca
+                if player.rect.y < -400:
                     score += 1
+                    # Atualiza imagem do jogador
                     peixe_pescado = False
                     player.update2(peixe_pescado,assets) 
             
@@ -238,11 +257,11 @@ def game_screen(window):
         window.blit(assets[BACKGROUND], (0, 0))
 
         # Altera o fundo dependendo do score 
-        if score>=5:
+        if score >= 5:
             window.blit(assets[POUCOS_PEIXES], (0,0))
-        if score>= 15:
+        if score >= 15:
             window.blit(assets[MEDIO_PEIXES], (0,0))
-        if score>= 30:
+        if score >= 30:
             window.blit(assets[CHEIO_PEIXES],(0,0))
 
         # Desenhando peixes

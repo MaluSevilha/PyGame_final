@@ -1,8 +1,11 @@
+# Importando bibliotecas necessárias
 import pygame
 from os import path
+
+# Importando variáveis de outros arquivo
 from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT
 
-
+# Função principal
 def tela_inicial(tela):
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
@@ -12,9 +15,10 @@ def tela_inicial(tela):
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
+    # ----- Loop principal
     rodando = True
     while rodando:
-        #Define um estado inicial 
+        # Define um estado inicial 
         state = FECHAR
 
         # Ajusta a velocidade do jogo.
@@ -26,7 +30,8 @@ def tela_inicial(tela):
             if event.type == pygame.QUIT:
                 state = FECHAR
                 rodando = False
-
+            
+            # Verifica se uma tecla foi pressionada
             if event.type == pygame.KEYUP:
                 state = JOGANDO
                 rodando = False
@@ -38,6 +43,7 @@ def tela_inicial(tela):
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
 
+        # Confere se é para mudar de tela
         if state == JOGANDO:
 
             rodando2 = True
@@ -46,16 +52,20 @@ def tela_inicial(tela):
             background = pygame.transform.scale(background, (WIDTH + 20, HEIGHT - 12))
             background_rect = background.get_rect()
 
+            # Cria um loop para rodar segunda tela de início
             while rodando2:
+                # Tempo de espera
                 sec = (pygame.time.get_ticks()-tempo_inicial)/1000
-                if sec >= 1:
-                    rodando2=False
 
-                #Coloca a imagem seguinte da raposa pulando na água
+                # Quando passa o tempo
+                if sec >= 1:
+                    rodando2 = False
+
+                # Coloca a imagem seguinte da raposa pulando na água
                 tela.blit(background,background_rect)
 
-                #Inverte o display
+                # Inverte o display
                 pygame.display.flip()
 
-
+    # Retorna o estado
     return state

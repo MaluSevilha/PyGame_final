@@ -3,9 +3,10 @@ import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM
 from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_VERDE_IMG, AGUA_VIVA_IMG
 
+# Classe dos peixes
 class Peixes(pygame.sprite.Sprite):
     def __init__(self, assets):
-        # Construtor da classe mãe (Sprite).
+        # Construtor da classe mãe (Sprite)
         pygame.sprite.Sprite.__init__(self)
 
         # Sorteia a imagem do peixe
@@ -33,7 +34,8 @@ class Peixes(pygame.sprite.Sprite):
             self.rect.x = -PEIXES_WIDTH
             self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
             self.speedx = random.randint(2,5)
-    
+
+# Classe do ANzol (player)    
 class Anzol(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
@@ -72,9 +74,10 @@ class Anzol(pygame.sprite.Sprite):
         else:
             self.image = assets[ANZOL_IMG]
 
+# Classe da linha
 class Linha(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
-        # Construtor da classe mãe (Sprite).
+        # Construtor da classe mãe (Sprite)
         pygame.sprite.Sprite.__init__(self)
         
         # Definindo a imagem da Linha
@@ -96,12 +99,13 @@ class Linha(pygame.sprite.Sprite):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
-        # Mantem dentro da tela
+        # Mantem dentro da tela e ligada com o anzol
         if self.rect.top + JOGADOR_HEIGHT - 10 < 0:
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT          
 
+# Classe do barril
 class Obstaculos(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
@@ -131,6 +135,7 @@ class Obstaculos(pygame.sprite.Sprite):
             self.rect.x = - BARRIL_WIDTH
             self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
         
+        # Muda sua velocidade de acordo com o nível
         if level == False:
             self.speedx = random.randint(2,4)
         else:
@@ -139,6 +144,7 @@ class Obstaculos(pygame.sprite.Sprite):
         if level2 == True:
             self.speedx = random.randint(10,15)
 
+# Classe das vidas
 class Vida(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
@@ -158,13 +164,14 @@ class Vida(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self,level,level2):
-        # Atualizando a posição do obstáculo
+        # Atualizando a posição da vida
         self.rect.x += self.speedx
 
-        # Recria quando sai da sala
+        # Mata quando sai da sala
         if self.rect.right - VIDA_TAM > WIDTH:
             self.kill()
 
+# Classe da água viva
 class Aguaviva(pygame.sprite.Sprite):
     def __init__(self, assets):
         # Construtor da classe mãe (Sprite).
@@ -184,12 +191,12 @@ class Aguaviva(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self,level,level2):
-        # Atualizando a posição do obstáculo
+        # Atualizando a posição da água viva
         self.rect.x += self.speedx
 
-        # Recria quando sai da sala
+        # Mata quando sai da sala
         if self.rect.right - AGUA_VIVA_TAM > WIDTH:
             self.kill()
 
-        if level2==True :
+        if level2 == True :
             self.speedx = random.randint(6,9)

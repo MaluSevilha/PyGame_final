@@ -1,9 +1,11 @@
+# Importando bibliotecas usadas
 import pygame
 from os import path
 
+# Importando variáveis de outros arquivos
 from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT
 
-
+# Criando função da tela de game over
 def game_over(tela):
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
@@ -13,21 +15,26 @@ def game_over(tela):
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
     background_rect = background.get_rect()
 
+    # ----- Loop principal 
     rodando = True
     while rodando:
 
         # Ajusta a velocidade do jogo.
         relogio.tick(FPS)
 
-        # Processa os eventos (mouse, teclado, botão, etc).
+        # Processa os eventos (mouse, teclado, botão, etc)
         for event in pygame.event.get():
-            # Verifica se foi fechado.
+            # Verifica se foi fechado
             if event.type == pygame.QUIT:
                 state = FECHAR
                 rodando = False
 
+            # Verifica se clicou com o mouse
             if event.type == pygame.MOUSEBUTTONDOWN:
+                # Encontra a posição que clicou
                 pos = pygame.mouse.get_pos()
+
+                # Verificando se clicou no botão de restart
                 if pos[0]>=155 and pos[0]<=331 and pos[1]>=408 and pos[1]<=493:
                     state = INICIO
                     rodando = False
@@ -39,5 +46,5 @@ def game_over(tela):
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
 
-
+    # Retornando o estado
     return state
