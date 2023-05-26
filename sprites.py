@@ -99,11 +99,11 @@ class Linha(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite)
         pygame.sprite.Sprite.__init__(self)
         
-        # Definindo a imagem da Linha
+        # Sprites com os estados da linha
         self.sprites = 10*[assets[LINHA_IMG],assets[LINHA_DANO_IMG]]
         self.current_sprite = 0
 
-        # Definindo a imagem da LINHA
+        # Definindo a imagem da linha
         self.image = self.sprites[self.current_sprite]
         self.mask = pygame.mask.from_surface(self.image)
 
@@ -135,8 +135,8 @@ class Linha(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
         
         # Animando o dano
-        if self.is_animating == True: # Se bateu no barril vai piscar
-            self.current_sprite += VEL_ANIMA +0.1 # Velocidade da animação
+        if self.is_animating == True: # Se bateu na água viva vai dar choque
+            self.current_sprite += VEL_ANIMA + 0.1 # Velocidade da animação
 
             if self.current_sprite >= len(self.sprites):
                 self.current_sprite = 0
