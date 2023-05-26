@@ -134,7 +134,7 @@ class Linha(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT  
 
-        if self.is_animating == True: # Se bateu no barril vai piscar
+        if self.is_animating == True: # Se bateu no linha vai piscar
             # Verifica o tick atual.
             now = pygame.time.get_ticks()
 
