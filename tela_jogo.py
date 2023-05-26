@@ -214,7 +214,7 @@ def game_screen(window):
             # Confere cada contato com águas vivas
             for agua_viva in choque:
                 # Barulho de choque 
-
+                assets[CHOQUE_SOUND].play()
                 # Animação
                 linha.animate()
                 
