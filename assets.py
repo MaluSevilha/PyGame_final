@@ -6,7 +6,7 @@ from os import path
 from config import WIDTH, HEIGHT
 
 # Importando caminhos
-from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR, SND_DIR
+from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR, SND_DIR, ANIM_DIR
 
 # Importando tamanho dos objetos
 from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM
@@ -51,6 +51,9 @@ BACKGROUND_SOUND = 'background_sound'
 # ---- Lista de imagens de peixes e obstáculos
 LISTA_OBSTACULOS = "imgs_barris"
 LISTA_PEIXES = "imgs_peixes"
+
+# ---- Animações
+LLINHA_ANIM = 'linha_anim'
 
 # Função que cria o dicionário assets
 def load_assets():
@@ -120,14 +123,14 @@ def load_assets():
     #Juntando a fonte do score à ele
     assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
-    # eletrecuta_anim = []
-    # for i in range(9):
-    #     # Os arquivos de animação são numerados de 00 a 08
-    #     filename = path.join(IMG_DIR, 'regularExplosion0{}.png'.format(i))
-    #     img = pygame.image.load(filename).convert()
-    #     img = pygame.transform.scale(img, (32, 32))
-    #     eletrecuta_anim.append(img)
-    # assets[VARA_ANIM] = eletrecuta_anim
+    eletrecuta_anim = []
+    for i in range(9):
+         # Os arquivos de animação são numerados de 00 a 08
+        filename = path.join(ANIM_DIR, 'animacao_frame_{0}.png'.format(i))
+        img = pygame.image.load(filename).convert()
+        img = pygame.transform.scale(img, (32, 32))
+        eletrecuta_anim.append(img)
+    assets[LLINHA_ANIM] = eletrecuta_anim
 
     # # Carrega os sons do jogo
     # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
