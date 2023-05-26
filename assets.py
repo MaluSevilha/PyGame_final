@@ -42,6 +42,7 @@ LINHA_DANO_IMG = 'linha_dano_img'
 
 # ---- Fontes
 SCORE_FONT = 'score_font'
+SCORE_FONT_TABELA = 'score_font_tabela'
 
 # ---- Sons
 PESCOU_SOUND = 'pescou_sound'
@@ -127,9 +128,10 @@ def load_assets():
     
     # Juntando a fonte do score à ele
     assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
+    assets[SCORE_FONT_TABELA] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 16)
 
     # Juntando as animações do choque em uma lista
-    #eletrecuta_anim = []
+    # eletrecuta_anim = []
     #for i in range(1, 5):
         # Os arquivos de animação são numerados de 1 a 7
     #    filename = path.join(ANIM_DIR, 'animação frame {0}.png'.format(i))

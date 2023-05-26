@@ -4,7 +4,7 @@ from os import path
 
 # Importando variáveis de outros arquivos
 from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT, BRANCO, ALFABETO, MORTO, NOMES_PONTUACAO
-from assets import load_assets, SCORE_FONT
+from assets import load_assets, SCORE_FONT, SCORE_FONT_TABELA 
 
 # Criando função da tela de game over
 def game_over(tela, score, SCORES_LISTA):
@@ -19,7 +19,7 @@ def game_over(tela, score, SCORES_LISTA):
         SCORES_LISTA.append(score)
         SCORES_LISTA = sorted(SCORES_LISTA)
         SCORES_LISTA = SCORES_LISTA[::-1] # Invertendo ela para posições
-        SCORES_LISTA.pop(0)
+        SCORES_LISTA.remove(min(SCORES_LISTA))
 
         # Definindo background para inserir o nome
         background = pygame.image.load(path.join(CENARIOS_DIR, 'colocar_nome.png')).convert()
@@ -33,8 +33,12 @@ def game_over(tela, score, SCORES_LISTA):
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
 
+        #Cria variável para o nome
         nome = ''
+
+        # Define variável para quando jogador está digitando
         colocar_nome = True
+
         while colocar_nome:
             for event in pygame.event.get():
                 # Verifica se foi fechado
@@ -46,15 +50,22 @@ def game_over(tela, score, SCORES_LISTA):
                 if event.type == pygame.KEYDOWN:
                     # Se clicou enter  
                     if event.key == pygame.K_RETURN:
+                        NOMES_PONTUACAO[score] = nome
                         colocar_nome = False
+                    
+                    # Se clicou backspace
                     elif event.key == pygame.K_BACKSPACE:
-                        NOMES_PONTUACAO[nome] = score
                         nome = nome[:-1]
+                    
+                    # Se clicou qualquer outra tecla
                     else:
+                        # Se essa tecla for uma letra
                         if event.key >= 97 and event.key <= 122:
                             nome += ALFABETO[event.key - 97]
                     
+                    # Se tiver não dado enter
                     if colocar_nome:
+                        # ATualiza nome do jogador na tela (letra por letra)
                         tela.fill(PRETO)
                         tela.blit(background, background_rect)
                         text_surface = assets[SCORE_FONT].render("{0}".format(nome), True, BRANCO)
@@ -64,20 +75,30 @@ def game_over(tela, score, SCORES_LISTA):
 
                         pygame.display.flip()
         
-        # Abrindo o  arquivo txt com os scores
-        with open('tabela_score.txt', 'a') as arquivo:
-            # Lendo cada uma das linhas
-            linhas = arquivo.readlines()
+        # Lista com as linhas modificadas do score
+        novas_linhas = []
 
-            # Separando as informações das linhas
-            for linha in linhas:
-                linha = linha.split(' - ')
-                num = linha[0]
+        # Reescrevendo o arquivo da tabela
+        with open('tabela_score.txt', 'w') as arquivo:
+            posicao = 1
 
-                if num == (SCORES_LISTA.index(score) + 1):
-                    # Mudando o nome da pessoa para sua posição na lista
-                    linha[1] = '{0} [{1}]'.format(nome, score)             
-    
+            # Escrevendo cada linha
+            for score in SCORES_LISTA:
+                # Pegando o nome de cada um
+                nome = NOMES_PONTUACAO[score]
+
+                # Refazendo a linha
+                linha = '{0}º - {1} [{2}] \n'.format(posicao, nome, score)
+
+                # Guardando numa lista a linha
+                novas_linhas.append(linha)
+
+                # Indo para o próximo jogador
+                posicao += 1
+            
+            # Escrvendo as linhas no arquivo
+            arquivo.writelines(novas_linhas)
+        
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
 
@@ -104,14 +125,45 @@ def game_over(tela, score, SCORES_LISTA):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Encontra a posição que clicou
                 pos = pygame.mouse.get_pos()
+                print(pos)
+
                 # Verificando se clicou no botão de restart
-                if 169 <= pos[0] <=322 and 489 <= pos[1] <= 556:
+                if 169 <= pos[0] <= 322 and 489 <= pos[1] <= 556:
                     state = INICIO
                     rodando = False
 
+        
         # A cada loop, redesenha o fundo e os sprites
         tela.fill(PRETO)
         tela.blit(background, background_rect)
+
+        # Abertura da tabela para escrever cada linha
+        with open('tabela_score.txt', 'r') as arquivo:
+            # Fazendo todas as linhas
+            linhas = arquivo.readlines()
+
+            # Definindo espaçamento entre as linhas
+            pulando_linha = 0
+
+            # Passando por cada linha
+            for linha in linhas:
+                # Retirando o /n
+                linha = linha[:-1]
+
+                # Escrevendo cada uma das pontuações
+                text_surface = assets[SCORE_FONT_TABELA].render(linha, True, BRANCO)
+
+                # Retângulo do texto
+                text_rect = text_surface.get_rect()
+
+                # Definindo posição do texto                           
+                text_rect.midtop = (261,  204 + pulando_linha)   
+
+                # Escrevendo na tela               
+                tela.blit(text_surface, text_rect)
+
+                # Aumentando o espaço entre as linhas
+                pulando_linha += 30
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()
