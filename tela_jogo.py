@@ -4,7 +4,8 @@ import pygame
 # Importando arquivos
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
 from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES, MEDIO_PEIXES, CHEIO_PEIXES, ANZOL_IMG
-from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG, ANZOL_PEIXE_AZUL_IMG, ANZOL_PEIXE_VERDE_IMG, ANZOL_PEIXE_LARANJA_IMG, PERDEU_ISCA_SOUND
+from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG, ANZOL_PEIXE_AZUL_IMG, ANZOL_PEIXE_VERDE_IMG, ANZOL_PEIXE_LARANJA_IMG
+from assets import PERDEU_ISCA_SOUND, PESCOU_SOUND
 from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
 # Fazendo a função da tela do jogo
@@ -68,7 +69,7 @@ def game_screen(window):
     peixe_pescado = False
 
     # ===== Loop principal =====
-    # pygame.mixer.music.play(loops=-1)
+    pygame.mixer.music.play(loops = -1)
     while state != FECHAR and state != MORTO:
         clock.tick(FPS)
 
@@ -146,6 +147,9 @@ def game_screen(window):
 
             # Passa pelos peixes pescados
             for peixe in pescou:
+                # Som de pescou
+                assets[PESCOU_SOUND].play()
+
                 # Checando a imagem ligada ao sprite do peixe pescado
                 imagem_peixe = peixe.image
 

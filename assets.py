@@ -125,8 +125,8 @@ def load_assets():
 
     # Juntando as animações do choque em uma lista
     eletrecuta_anim = []
-    for i in range(9):
-         # Os arquivos de animação são numerados de 00 a 08
+    for i in range(1, 8):
+        # Os arquivos de animação são numerados de 1 a 7
         filename = path.join(ANIM_DIR, 'animacao_frame_{0}.png'.format(i))
         img = pygame.image.load(filename).convert()
         img = pygame.transform.scale(img, (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
@@ -141,7 +141,7 @@ def load_assets():
 
     return assets
 
-# def toca_musica(file,volume = 1, loop = -1):
-   # pygame.mixer.music.load(path.join(file))
-    #pygame.mixer.music.set_volume(volume)
-    #pygame.mixer.music.play(loop)
+def toca_musica(file, volume = 0.5, loop = -1):
+    pygame.mixer.music.load(path.join(file))
+    pygame.mixer.music.set_volume(volume)
+    pygame.mixer.music.play(loop)
