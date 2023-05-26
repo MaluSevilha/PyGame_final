@@ -10,6 +10,7 @@ def game_over(tela, score, SCORES_LISTA):
 
     # Armazena o score, caso ele esteja no top 5
     if score > min(SCORES_LISTA):
+        
         SCORES_LISTA.append(score)
         SCORES_LISTA = sorted(SCORES_LISTA)
         SCORES_LISTA.pop(0)

@@ -121,45 +121,28 @@ class Linha(pygame.sprite.Sprite):
         # Está animado
         self.is_animating = False
 
-    def animacao(self): 
+    def animate(self):
         self.is_animating = True
 
-    def update(self, level, level2):
+    def update(self,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
-        # Mantem dentro da tela e ligada com o anzol
+        # Mantem dentro da tela
         if self.rect.top + JOGADOR_HEIGHT - 10 < 0:
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
-            self.rect.bottom = HEIGHT  
+            self.rect.bottom = HEIGHT
+        
+        # Animando o dano
+        if self.is_animating == True: # Se bateu no barril vai piscar
+            self.current_sprite += VEL_ANIMA + 10 # Velocidade da animação
 
-        if self.is_animating == True: # Se bateu no linha vai piscar
-            # Verifica o tick atual.
-            now = pygame.time.get_ticks()
-
-            # Verifica quantos ticks se passaram desde a ultima mudança de frame.
-            elapsed_ticks = now - self.last_update
-
-            # Se já está na hora de mudar de imagem...
-            if elapsed_ticks > self.frame_ticks:
-                # Marca o tick da nova imagem.
-                self.last_update = now
-
-            # Avança um quadro.
-            self.frame += 1
-
-            # Verifica se já chegou no final da animação.
-            if self.frame == len(self.explosion_anim):
-                # Se sim, tchau explosão!
-                self.kill()
-            
-            else:
-                # Se ainda não chegou ao fim da explosão, troca de imagem.
-                center = self.rect.center
-                self.image = self.explosion_anim[self.frame]
-                self.rect = self.image.get_rect()
-                self.rect.center = center    
+            if self.current_sprite >= len(self.sprites):
+                self.current_sprite = 0
+                self.is_animating = False
+                
+            self.image = self.sprites[int(self.current_sprite)]  
 
 # Classe do barril
 class Obstaculos(pygame.sprite.Sprite):
