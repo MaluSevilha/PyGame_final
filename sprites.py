@@ -100,7 +100,7 @@ class Linha(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Sprites com os estados da linha
-        self.sprites = 10*[assets[LINHA_IMG],assets[LINHA_DANO_IMG]]
+        self.sprites = 15*[assets[LINHA_IMG],assets[LINHA_DANO_IMG]]
         self.current_sprite = 0
 
         # Definindo a imagem da linha
