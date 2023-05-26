@@ -133,8 +133,8 @@ def load_assets():
         eletrecuta_anim.append(img)
     assets[LINHA_ANIM] = eletrecuta_anim
 
-    # # Carrega os sons do jogo
-    # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
+    # Carrega os sons do jogo
+    assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_pegou_peixe.mp3'))
     assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_dano.mp3'))
     assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_jogou_vara.mp3'))
     # assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
