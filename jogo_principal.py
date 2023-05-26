@@ -2,7 +2,7 @@
 import pygame
 
 # Importando variáveis e funções de outros arquivos
-from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO
+from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO, SCORES_LISTA
 from tela_inicial import tela_inicial
 from tela_jogo import game_screen
 from game_over import game_over
@@ -24,12 +24,19 @@ while state != FECHAR:
     # Abre a tela de início
     if state == INICIO:
         state = tela_inicial(window)
+
     # Abre a tela do jogo
     elif state == JOGANDO:
-         state = game_screen(window)
+        lista_return = game_screen(window)
+        state = lista_return[0]
+        score = lista_return[1]
+
     # Abre a tela de Game Over
     elif state == MORTO:
-        state = game_over(window)
+        lista_return = game_over(window, score, SCORES_LISTA)
+        state = lista_return[0]
+        SCORES_LISTA = lista_return[1]
+
     # Encerra o pygame
     else:
         state = FECHAR

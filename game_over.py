@@ -6,7 +6,14 @@ from os import path
 from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT
 
 # Criando função da tela de game over
-def game_over(tela):
+def game_over(tela, score, SCORES_LISTA):
+
+    # Armazena o score, caso ele esteja no top 5
+    if score > min(SCORES_LISTA):
+        SCORES_LISTA.append(score)
+        SCORES_LISTA = sorted(SCORES_LISTA)
+        SCORES_LISTA.pop(0)
+    
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
 
@@ -47,4 +54,4 @@ def game_over(tela):
         pygame.display.flip()
 
     # Retornando o estado
-    return state
+    return [state, SCORES_LISTA]

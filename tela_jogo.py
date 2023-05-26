@@ -10,6 +10,7 @@ from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
 # Fazendo a função da tela do jogo
 def game_screen(window):
+
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
 
@@ -215,7 +216,7 @@ def game_screen(window):
                 # Barulho de choque 
 
                 # Animação
-                linha.animacao()
+                # linha.animacao()
                 
                 # Se peixe estiver no anzol 
                 if peixe_pescado == True:
@@ -275,7 +276,7 @@ def game_screen(window):
         text_rect.midtop = (WIDTH / 2,  10)
         window.blit(text_surface, text_rect)
 
-        #   Desenhando as vidas
+        # Desenhando as vidas
         text_surface = assets[SCORE_FONT].render(chr(9829) * vidas, True, VERMELHO)
         text_rect = text_surface.get_rect()
         text_rect.bottomleft = (10, HEIGHT - 10)
@@ -283,4 +284,4 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state
+    return [state, score]

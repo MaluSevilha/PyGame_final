@@ -48,3 +48,6 @@ MORTO = -1
 INICIO = 0
 FECHAR = 1
 JOGANDO = 2
+
+# ---- Lista de scores mais altos
+SCORES_LISTA = [0, 0, 0, 0, 0]

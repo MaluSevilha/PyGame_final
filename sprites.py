@@ -135,15 +135,31 @@ class Linha(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT  
 
         if self.is_animating == True: # Se bateu no barril vai piscar
-            self.current_sprite += VEL_ANIMA + 10 # Velocidade da animação
+            # Verifica o tick atual.
+            now = pygame.time.get_ticks()
 
-            # Encerra a animação caso esteja no último frame
-            if self.current_sprite >= len(self.sprites):
-                self.current_sprite = 0
-                self.is_animating = False
+            # Verifica quantos ticks se passaram desde a ultima mudança de frame.
+            elapsed_ticks = now - self.last_update
+
+            # Se já está na hora de mudar de imagem...
+            if elapsed_ticks > self.frame_ticks:
+                # Marca o tick da nova imagem.
+                self.last_update = now
+
+            # Avança um quadro.
+            self.frame += 1
+
+            # Verifica se já chegou no final da animação.
+            if self.frame == len(self.explosion_anim):
+                # Se sim, tchau explosão!
+                self.kill()
             
-            # Atualiza a imagem
-            self.image = self.sprites[int(self.current_sprite)]      
+            else:
+                # Se ainda não chegou ao fim da explosão, troca de imagem.
+                center = self.rect.center
+                self.image = self.explosion_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center    
 
 # Classe do barril
 class Obstaculos(pygame.sprite.Sprite):
