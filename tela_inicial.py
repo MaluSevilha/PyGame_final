@@ -3,7 +3,7 @@ import pygame
 from os import path
 
 # Importando variáveis de outros arquivo
-from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT
+from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT, SND_DIR
 
 # Função principal
 def tela_inicial(tela):

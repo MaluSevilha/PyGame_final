@@ -187,6 +187,7 @@ def game_screen(window):
 
                 # Barulho de barril quebrando
                 assets[PERDEU_ISCA_SOUND].play()
+
                 # Se peixe estiver no anzol
                 if peixe_pescado == True:
                     # Não perde uma vida, mas perde o peixe

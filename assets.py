@@ -53,7 +53,7 @@ LISTA_OBSTACULOS = "imgs_barris"
 LISTA_PEIXES = "imgs_peixes"
 
 # ---- Animações
-LLINHA_ANIM = 'linha_anim'
+LINHA_ANIM = 'linha_anim'
 
 # Função que cria o dicionário assets
 def load_assets():
@@ -120,22 +120,23 @@ def load_assets():
     IMGS_BARRIS = [assets[BARRIL_LARANJA_IMG], assets[BARRIL_MARROM_IMG]]
     assets[LISTA_OBSTACULOS] = IMGS_BARRIS
     
-    #Juntando a fonte do score à ele
+    # Juntando a fonte do score à ele
     assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
+    # Juntando as animações do choque em uma lista
     eletrecuta_anim = []
     for i in range(9):
          # Os arquivos de animação são numerados de 00 a 08
         filename = path.join(ANIM_DIR, 'animacao_frame_{0}.png'.format(i))
         img = pygame.image.load(filename).convert()
-        img = pygame.transform.scale(img, (32, 32))
+        img = pygame.transform.scale(img, (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
         eletrecuta_anim.append(img)
-    assets[LLINHA_ANIM] = eletrecuta_anim
+    assets[LINHA_ANIM] = eletrecuta_anim
 
     # # Carrega os sons do jogo
     # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
     assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_dano.mp3'))
-    # assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
+    assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_jogou_vara.mp3'))
     # assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
 
     return assets
