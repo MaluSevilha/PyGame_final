@@ -59,4 +59,3 @@ def tela_inicial(tela):
 
 
     return state
-

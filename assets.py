@@ -135,4 +135,3 @@ def load_assets():
    # pygame.mixer.music.load(path.join(file))
     #pygame.mixer.music.set_volume(volume)
     #pygame.mixer.music.play(loop)
-
