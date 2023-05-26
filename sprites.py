@@ -1,7 +1,7 @@
 import random
 import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM, VEL_ANIMA
-from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, AGUA_VIVA_IMG,ANZOL_DANO_IMG, LINHA_ANIM
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, AGUA_VIVA_IMG,ANZOL_DANO_IMG, LINHA_ANIM, LINHA_DANO_IMG
 
 # Classe dos peixes
 class Peixes(pygame.sprite.Sprite):
@@ -100,12 +100,12 @@ class Linha(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Definindo a imagem da Linha
-        self.image = assets[LINHA_IMG]
-        self.mask = pygame.mask.from_surface(self.image)
-
-        # Definindo a imagem da vara
-        self.sprites = assets[LINHA_ANIM]
+        self.sprites = 10*[assets[LINHA_IMG],assets[LINHA_DANO_IMG]]
         self.current_sprite = 0
+
+        # Definindo a imagem da LINHA
+        self.image = self.sprites[self.current_sprite]
+        self.mask = pygame.mask.from_surface(self.image)
 
         # Cria o retângulo de referência
         # ---- Linha
@@ -136,7 +136,7 @@ class Linha(pygame.sprite.Sprite):
         
         # Animando o dano
         if self.is_animating == True: # Se bateu no barril vai piscar
-            self.current_sprite += VEL_ANIMA + 10 # Velocidade da animação
+            self.current_sprite += VEL_ANIMA +0.1 # Velocidade da animação
 
             if self.current_sprite >= len(self.sprites):
                 self.current_sprite = 0
@@ -239,3 +239,5 @@ class Aguaviva(pygame.sprite.Sprite):
 
         if level2 == True :
             self.speedx = random.randint(6,9)
+
+#assets[ANZOL_DANO_2_IMG]            

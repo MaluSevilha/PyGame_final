@@ -38,6 +38,7 @@ ANZOL_PEIXE_VERDE_IMG = 'peixe_verde_anzol_img'
 ANZOL_PEIXE_LARANJA_IMG = 'peixe_laranja_anzol_img'
 ANZOL_PEIXE_AZUL_IMG = 'peixe_azul_anzol_img'
 ANZOL_DANO_IMG = 'anzol_dano_img'
+LINHA_DANO_IMG = 'linha_dano_img'
 
 # ---- Fontes
 SCORE_FONT = 'score_font'
@@ -70,6 +71,9 @@ def load_assets():
 
     assets[ANZOL_DANO_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_dano.png')).convert_alpha()
     assets[ANZOL_DANO_IMG] = pygame.transform.scale(assets[ANZOL_DANO_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+
+    assets[LINHA_DANO_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'linha_dano.png')).convert_alpha()
+    assets[LINHA_DANO_IMG] = pygame.transform.scale(assets[LINHA_DANO_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_VERDE_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
@@ -125,14 +129,14 @@ def load_assets():
     assets[SCORE_FONT] = pygame.font.Font(path.join(FNT_DIR, 'PressStart2P.ttf'), 28)
 
     # Juntando as animações do choque em uma lista
-    eletrecuta_anim = []
-    for i in range(1, 5):
+    #eletrecuta_anim = []
+    #for i in range(1, 5):
         # Os arquivos de animação são numerados de 1 a 7
-        filename = path.join(ANIM_DIR, 'animação frame {0}.png'.format(i))
-        img = pygame.image.load(filename).convert_alpha()
-        img = pygame.transform.scale(img, (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
-        eletrecuta_anim.append(img)
-    assets[LINHA_ANIM] = eletrecuta_anim
+    #    filename = path.join(ANIM_DIR, 'animação frame {0}.png'.format(i))
+    #    img = pygame.image.load(filename).convert_alpha()
+    #    img = pygame.transform.scale(img, (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+    #    eletrecuta_anim.append(img)
+    #assets[LINHA_ANIM] = eletrecuta_anim
 
     # Carrega os sons do jogo
     assets[CHOQUE_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'choque.mp3'))

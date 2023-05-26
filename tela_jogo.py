@@ -133,6 +133,12 @@ def game_screen(window):
                     barril = Obstaculos(assets)
                     all_obstaculos.add(barril)
                     all_sprites.add(barril)
+                # Adiciona água viva no nível mais alto
+                if len(all_aguaviva) <= 1:
+                    if score % 2 == 0:
+                        aguaviva = Aguaviva(assets)
+                        all_sprites.add(aguaviva)
+                        all_aguaviva.add(aguaviva)
 
             if score>=30:
                 # Adiciona água viva no nível mais alto
@@ -214,7 +220,7 @@ def game_screen(window):
             # Confere cada contato com águas vivas
             for agua_viva in choque:
                 # Barulho de choque 
-
+                assets[CHOQUE_SOUND].play()
                 # Animação
                 linha.animate()
                 
