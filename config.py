@@ -7,6 +7,8 @@ PEIXES_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Peixes')
 OBJETOS_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Objetos')
 JOGADOR_DIR = path.join(path.dirname(__file__), 'assets', 'imagens', 'Jogador')
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'fonte')
+SND_DIR = path.join(path.dirname(__file__), 'assets', 'sons')
+ANIM_DIR = path.join(path.dirname(__file__), 'assets','imagens', 'Animacao')
 
 # Dados gerais do jogo.
 WIDTH = 500 # Largura da tela
@@ -15,6 +17,9 @@ FPS = 60 # Frames por segundo
 
 # Define velocidades
 VEL_JOGADOR = 8
+
+# Define Velocidade das animações
+VEL_ANIMA = 0.1
 
 # Define tamanhos
 PEIXES_WIDTH = 150

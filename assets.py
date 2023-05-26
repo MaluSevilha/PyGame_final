@@ -6,7 +6,7 @@ from os import path
 from config import WIDTH, HEIGHT
 
 # Importando caminhos
-from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR
+from config import BARRIL_HEIGHT,CENARIOS_DIR, PEIXES_DIR, OBJETOS_DIR, JOGADOR_DIR, FNT_DIR, SND_DIR
 
 # Importando tamanho dos objetos
 from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM
@@ -37,6 +37,7 @@ ANZOL_IMG = 'anzol_img'
 ANZOL_PEIXE_VERDE_IMG = 'peixe_verde_anzol_img'
 ANZOL_PEIXE_LARANJA_IMG = 'peixe_laranja_anzol_img'
 ANZOL_PEIXE_AZUL_IMG = 'peixe_azul_anzol_img'
+ANZOL_DANO_IMG = 'anzol_dano_img'
 
 # ---- Fontes
 SCORE_FONT = 'score_font'
@@ -62,6 +63,9 @@ def load_assets():
 
     assets[ANZOL_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol.png')).convert_alpha()
     assets[ANZOL_IMG] = pygame.transform.scale(assets[ANZOL_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
+
+    assets[ANZOL_DANO_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_dano.png')).convert_alpha()
+    assets[ANZOL_DANO_IMG] = pygame.transform.scale(assets[ANZOL_DANO_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
 
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.image.load(path.join(JOGADOR_DIR,'anzol_peixe_verde.png')).convert_alpha()
     assets[ANZOL_PEIXE_VERDE_IMG] = pygame.transform.scale(assets[ANZOL_PEIXE_VERDE_IMG], (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
@@ -127,7 +131,7 @@ def load_assets():
 
     # # Carrega os sons do jogo
     # assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl3.wav'))
-    # assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'expl6.wav'))
+    assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_dano.mp3'))
     # assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
     # assets[BACKGROUND_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'pew.wav'))
 

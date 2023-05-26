@@ -1,7 +1,7 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM
-from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_VERDE_IMG, AGUA_VIVA_IMG
+from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM, VEL_ANIMA
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_VERDE_IMG, AGUA_VIVA_IMG,ANZOL_DANO_IMG
 
 # Classe dos peixes
 class Peixes(pygame.sprite.Sprite):
@@ -42,8 +42,14 @@ class Anzol(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         # Definindo a imagem da vara
-        self.image = assets[ANZOL_IMG]
+        self.sprites = 2*[assets[ANZOL_IMG],assets[ANZOL_DANO_IMG]]
+        self.current_sprite = 0
+
+        self.image = self.sprites[self.current_sprite]
         self.mask = pygame.mask.from_surface(self.image)
+
+        # Está animando
+        self.is_animating = False
 
         # Cria o retângulo de referência
         # ---- Vara
@@ -56,6 +62,9 @@ class Anzol(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
+    def animate(self):
+        self.is_animating = True
+
     def update(self,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
@@ -65,6 +74,16 @@ class Anzol(pygame.sprite.Sprite):
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
+        
+        # Animando o dano
+        if self.is_animating == True: # Se bateu no barril vai piscar
+            self.current_sprite += VEL_ANIMA # Velocidade da animação
+
+            if self.current_sprite >= len(self.sprites):
+                self.current_sprite = 0
+                self.is_animating = False
+                
+            self.image = self.sprites[int(self.current_sprite)]
 
     
     def update2(self, peixe_pescado, IMAGEM_ANZOL, assets):
