@@ -125,7 +125,6 @@ def game_over(tela, score, SCORES_LISTA):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Encontra a posição que clicou
                 pos = pygame.mouse.get_pos()
-                print(pos)
 
                 # Verificando se clicou no botão de restart
                 if 169 <= pos[0] <= 322 and 489 <= pos[1] <= 556:
