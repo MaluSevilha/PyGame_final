@@ -3,8 +3,8 @@ import pygame
 
 # Importando arquivos
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO
-from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES, MEDIO_PEIXES, CHEIO_PEIXES
-from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG
+from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES, MEDIO_PEIXES, CHEIO_PEIXES, ANZOL_IMG
+from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG, ANZOL_PEIXE_AZUL_IMG, ANZOL_PEIXE_VERDE_IMG, ANZOL_PEIXE_LARANJA_IMG
 from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
 # Fazendo a função da tela do jogo
@@ -20,12 +20,7 @@ def game_screen(window):
     all_obstaculos = pygame.sprite.Group()
     all_vidas = pygame.sprite.Group()
     all_aguaviva = pygame.sprite.Group()
-
-    # Criando grupos de peixes
     all_fish = pygame.sprite.Group()
-    all_orange_fish = pygame.sprite.Group()
-    all_blue_fish = pygame.sprite.Group()
-    all_green_fish = pygame.sprite.Group()
 
     # Adicionando ao dicionário groups
     groups = {}
@@ -33,12 +28,7 @@ def game_screen(window):
     groups['all_obstaculos'] = all_obstaculos
     groups['all_vidas'] = all_vidas
     groups['all_agua_vivas'] = all_aguaviva
-
-    # Adicionando os grupos de peixes
     groups['all_fish'] = all_fish
-    groups['all_green_fish'] = all_green_fish
-    groups['all_blue_fish'] = all_blue_fish
-    groups['all_orange_fish'] = all_orange_fish
 
 
     # Criando o jogador
@@ -59,16 +49,7 @@ def game_screen(window):
     for i in range(3):
         peixe = Peixes(assets)
 
-        #Conferindo cor do peixe e o adicionando ao grupo
-        imagem_peixe = peixe.image
-        if peixe.image == assets[PEIXE_AZUL_IMG]:
-            all_blue_fish.add(peixe)
-        elif peixe.image == assets[PEIXE_VERDE_IMG]:
-            all_green_fish.add(peixe)
-        else:
-            all_orange_fish.add(peixe)
-
-        # Adcionando aos demais grupos
+        # Adcionando aos grupos
         all_sprites.add(peixe)
         all_fish.add(peixe)
     
@@ -134,12 +115,12 @@ def game_screen(window):
             
             # ----- GRAUS DE DIFICULDADE
             # Define se aumenta o nível para a velocidade do barril
-            if score>= 15:
+            if score >= 15:
                 level = True
             else: 
                 level = False
 
-            if score>=45:
+            if score >= 45:
                 level2 = True
             else:
                 level2 = False
@@ -152,9 +133,9 @@ def game_screen(window):
                     all_sprites.add(barril)
 
             if score>=30:
-                #Adiciona água viva no nível mais alto
-                if len(all_aguaviva)<=1:
-                    if score%2==0:
+                # Adiciona água viva no nível mais alto
+                if len(all_aguaviva) <= 1:
+                    if score % 2 == 0:
                         aguaviva = Aguaviva(assets)
                         all_sprites.add(aguaviva)
                         all_aguaviva.add(aguaviva)
@@ -165,12 +146,22 @@ def game_screen(window):
 
             # Passa pelos peixes pescados
             for peixe in pescou:
-                print(peixe)
+                # Checando a imagem ligada ao sprite do peixe pescado
+                imagem_peixe = peixe.image
+
+                # Alterando a imagem do anzol de acordo com essa
+                if peixe.image == assets[PEIXE_AZUL_IMG]:
+                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_AZUL_IMG]
+                elif peixe.image == assets[PEIXE_VERDE_IMG]:
+                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_VERDE_IMG]
+                else:
+                    IMAGEM_ANZOL = assets[ANZOL_PEIXE_LARANJA_IMG]
+                
                 # Barulho do peixe sendo pescado
 
                 # Muda a variável do peixe pescado
                 peixe_pescado = True
-                player.update2(peixe_pescado,assets)
+                player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
 
                 # Garante que só um peixe seja pescado por vez
                 pescou = []
@@ -198,7 +189,8 @@ def game_screen(window):
                 if peixe_pescado == True:
                     # Não perde uma vida, mas perde o peixe
                     peixe_pescado = False
-                    player.update2(peixe_pescado,assets)
+                    IMAGEM_ANZOL = assets[ANZOL_IMG]
+                    player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
                 else:
                     # Perde uma vida
                     vidas -= 1
@@ -221,7 +213,8 @@ def game_screen(window):
                 if peixe_pescado == True:
                     # Não perde duas vidas, mas perde o peixe
                     peixe_pescado = False
-                    player.update2(peixe_pescado,assets)
+                    IMAGEM_ANZOL = assets[ANZOL_IMG]
+                    player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
                 else:
                     # Perde duas vidas
                     vidas -= 2
@@ -245,7 +238,8 @@ def game_screen(window):
                     score += 1
                     # Atualiza imagem do jogador
                     peixe_pescado = False
-                    player.update2(peixe_pescado,assets) 
+                    IMAGEM_ANZOL = assets[ANZOL_IMG]
+                    player.update2(peixe_pescado, IMAGEM_ANZOL, assets)
             
 
         # Confere se morreu

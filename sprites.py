@@ -67,10 +67,10 @@ class Anzol(pygame.sprite.Sprite):
             self.rect.bottom = HEIGHT
 
     
-    def update2(self,peixe_pescado,assets):
+    def update2(self, peixe_pescado, IMAGEM_ANZOL, assets):
         # Muda a imagem se peixe estiver no anzol
         if peixe_pescado == True:
-            self.image = assets[ANZOL_PEIXE_VERDE_IMG]
+            self.image = IMAGEM_ANZOL
         else:
             self.image = assets[ANZOL_IMG]
 
