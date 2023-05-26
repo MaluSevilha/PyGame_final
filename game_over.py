@@ -51,7 +51,6 @@ def game_over(tela, score, SCORES_LISTA):
                         NOMES_PONTUACAO[nome] = score
                         nome = nome[:-1]
                     else:
-                        print(event.key)
                         if event.key >= 97 and event.key <= 122:
                             nome += ALFABETO[event.key - 97]
                     
