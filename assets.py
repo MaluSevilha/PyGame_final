@@ -126,10 +126,10 @@ def load_assets():
 
     # Juntando as animações do choque em uma lista
     eletrecuta_anim = []
-    for i in range(1, 8):
+    for i in range(1, 5):
         # Os arquivos de animação são numerados de 1 a 7
-        filename = path.join(ANIM_DIR, 'animacao_frame_{0}.png'.format(i))
-        img = pygame.image.load(filename).convert()
+        filename = path.join(ANIM_DIR, 'animação frame {0}.png'.format(i))
+        img = pygame.image.load(filename).convert_alpha()
         img = pygame.transform.scale(img, (JOGADOR_WIDTH, JOGADOR_HEIGHT - 50))
         eletrecuta_anim.append(img)
     assets[LINHA_ANIM] = eletrecuta_anim
