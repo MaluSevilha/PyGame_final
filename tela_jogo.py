@@ -243,7 +243,7 @@ def game_screen(window):
             
 
         # Confere se morreu
-        if vidas == 0:
+        if vidas <= 0:
             state = MORTO   
 
         # ----- Gera saídas
