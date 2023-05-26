@@ -64,7 +64,20 @@ def game_over(tela, score, SCORES_LISTA):
                         tela.blit(text_surface, text_rect)
 
                         pygame.display.flip()
+        
+        # Abrindo o  arquivo txt com os scores
+        with open('tabela_score.txt', 'a') as arquivo:
+            # Lendo cada uma das linhas
+            linhas = arquivo.readlines()
 
+            # Separando as informações das linhas
+            for linha in linhas:
+                linha = linha.split(' - ')
+                num = linha[0]
+
+                if num == (SCORES_LISTA.index(score) + 1):
+                    # Mudando o nome da pessoa para sua posição na lista
+                    linha[1] = '{0} [{1}]'.format(nome, score)             
     
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
