@@ -1,7 +1,7 @@
 import random
 import pygame
 from config import WIDTH, HEIGHT, PEIXES_HEIGHT, PEIXES_WIDTH, JOGADOR_HEIGHT, BARRIL_HEIGHT, BARRIL_WIDTH, VIDA_TAM, AGUA_VIVA_TAM, VEL_ANIMA
-from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, ANZOL_PEIXE_VERDE_IMG, AGUA_VIVA_IMG,ANZOL_DANO_IMG, LINHA_ANIM
+from assets import LISTA_PEIXES, LISTA_OBSTACULOS, VIDA_IMG, ANZOL_IMG, LINHA_IMG, AGUA_VIVA_IMG,ANZOL_DANO_IMG, LINHA_ANIM
 
 # Classe dos peixes
 class Peixes(pygame.sprite.Sprite):
@@ -103,6 +103,10 @@ class Linha(pygame.sprite.Sprite):
         self.image = assets[LINHA_IMG]
         self.mask = pygame.mask.from_surface(self.image)
 
+        # Definindo a imagem da vara
+        self.sprites = assets[LINHA_ANIM]
+        self.current_sprite = 0
+
         # Cria o retângulo de referência
         # ---- Linha
         self.rect = self.image.get_rect()
@@ -114,7 +118,13 @@ class Linha(pygame.sprite.Sprite):
         self.groups = groups
         self.assets = assets
 
-    def update(self,level,level2):
+        # Está animado
+        self.is_animating = False
+
+    def animacao(self): 
+        self.is_animating = True
+
+    def update(self, level, level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -122,7 +132,18 @@ class Linha(pygame.sprite.Sprite):
         if self.rect.top + JOGADOR_HEIGHT - 10 < 0:
             self.rect.bottom = 10
         if self.rect.bottom > HEIGHT:
-            self.rect.bottom = HEIGHT          
+            self.rect.bottom = HEIGHT  
+
+        if self.is_animating == True: # Se bateu no barril vai piscar
+            self.current_sprite += VEL_ANIMA + 10 # Velocidade da animação
+
+            # Encerra a animação caso esteja no último frame
+            if self.current_sprite >= len(self.sprites):
+                self.current_sprite = 0
+                self.is_animating = False
+            
+            # Atualiza a imagem
+            self.image = self.sprites[int(self.current_sprite)]      
 
 # Classe do barril
 class Obstaculos(pygame.sprite.Sprite):

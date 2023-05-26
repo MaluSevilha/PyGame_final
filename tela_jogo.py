@@ -215,7 +215,8 @@ def game_screen(window):
                 # Barulho de choque 
 
                 # Animação
-
+                linha.animacao()
+                
                 # Se peixe estiver no anzol 
                 if peixe_pescado == True:
                     # Não perde duas vidas, mas perde o peixe
