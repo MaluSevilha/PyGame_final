@@ -3,24 +3,67 @@ import pygame
 from os import path
 
 # Importando variáveis de outros arquivos
-from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT
+from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT, BRANCO, ALFABETO, MORTO, NOMES_PONTUACAO
+from assets import load_assets, SCORE_FONT
 
 # Criando função da tela de game over
 def game_over(tela, score, SCORES_LISTA):
+    
+    assets = load_assets()
+    state = MORTO
 
     # Armazena o score, caso ele esteja no top 5
     if score > min(SCORES_LISTA):
 
+        # Atualizando lista de scores
         SCORES_LISTA.append(score)
         SCORES_LISTA = sorted(SCORES_LISTA)
+        SCORES_LISTA = SCORES_LISTA[::-1] # Invertendo ela para posições
         SCORES_LISTA.pop(0)
 
-        background = pygame.image.load(path.join(CENARIOS_DIR, 'GAME OVER.png')).convert()
+        # Definindo background para inserir o nome
+        background = pygame.image.load(path.join(CENARIOS_DIR, 'colocar_nome.png')).convert()
         background = pygame.transform.scale(background, (WIDTH, HEIGHT))
         background_rect = background.get_rect()
-        
+
+        # Colocando background
         tela.fill(PRETO)
         tela.blit(background, background_rect)
+
+        # Depois de desenhar tudo, inverte o display.
+        pygame.display.flip()
+
+        nome = ''
+        colocar_nome = True
+        while colocar_nome:
+            for event in pygame.event.get():
+                # Verifica se foi fechado
+                if event.type == pygame.QUIT:
+                    state = FECHAR
+                    colocar_nome = False
+
+                # Verifica se clicou com o mouse
+                if event.type == pygame.KEYDOWN:
+                    # Se clicou enter  
+                    if event.key == pygame.K_RETURN:
+                        colocar_nome = False
+                    elif event.key == pygame.K_BACKSPACE:
+                        NOMES_PONTUACAO[nome] = score
+                        nome = nome[:-1]
+                    else:
+                        print(event.key)
+                        if event.key >= 97 and event.key <= 122:
+                            nome += ALFABETO[event.key - 97]
+                    
+                    if colocar_nome:
+                        tela.fill(PRETO)
+                        tela.blit(background, background_rect)
+                        text_surface = assets[SCORE_FONT].render("{0}".format(nome), True, BRANCO)
+                        text_rect = text_surface.get_rect()
+                        text_rect.midtop = (238,  278)
+                        tela.blit(text_surface, text_rect)
+
+                        pygame.display.flip()
 
     
     # Variável para o ajuste de velocidade
@@ -33,7 +76,7 @@ def game_over(tela, score, SCORES_LISTA):
 
     # ----- Loop principal 
     rodando = True
-    while rodando:
+    while rodando and state != FECHAR:
 
         # Ajusta a velocidade do jogo.
         relogio.tick(FPS)
@@ -49,7 +92,6 @@ def game_over(tela, score, SCORES_LISTA):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # Encontra a posição que clicou
                 pos = pygame.mouse.get_pos()
-                print(pos)
                 # Verificando se clicou no botão de restart
                 if 169 <= pos[0] <=322 and 489 <= pos[1] <= 556:
                     state = INICIO
