@@ -47,6 +47,7 @@ PESCOU_SOUND = 'pescou_sound'
 PERDEU_ISCA_SOUND = 'perdeu_isca_sound'
 JOGOU_VARA_SOUND = 'jogou_vara_sound'
 BACKGROUND_SOUND = 'background_sound'
+CHOQUE = 'choque_sound'
 
 # ---- Lista de imagens de peixes e obstáculos
 LISTA_OBSTACULOS = "imgs_barris"
@@ -134,6 +135,7 @@ def load_assets():
     assets[LINHA_ANIM] = eletrecuta_anim
 
     # Carrega os sons do jogo
+    assets[CHOQUE] = pygame.mixer.Sound(path.join(SND_DIR, 'choque.mp3'))
     assets[PESCOU_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_pegou_peixe.mp3'))
     assets[PERDEU_ISCA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_dano.mp3'))
     assets[JOGOU_VARA_SOUND] = pygame.mixer.Sound(path.join(SND_DIR, 'som_jogou_vara.mp3'))
