@@ -14,6 +14,7 @@ from config import PEIXES_WIDTH, PEIXES_HEIGHT, JOGADOR_WIDTH, JOGADOR_HEIGHT, B
 # Definindo chaves do dicionário assets
 # ---- Cenários
 BACKGROUND = 'background'
+BACKGROUND_INSTRU = 'background_instrucoes'
 POUCOS_PEIXES = 'poucos_peixes'
 MEDIO_PEIXES = 'médio_peixes'
 CHEIO_PEIXES = 'cheio_peixes'
@@ -87,6 +88,9 @@ def load_assets():
 
     assets[BACKGROUND] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar.png')).convert()
     assets[BACKGROUND] = pygame.transform.scale(assets[BACKGROUND], (WIDTH, HEIGHT))
+
+    assets[BACKGROUND_INSTRU] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_instrucoes_1.png')).convert()
+    assets[BACKGROUND_INSTRU] = pygame.transform.scale(assets[BACKGROUND_INSTRU], (WIDTH, HEIGHT))
 
     assets[POUCOS_PEIXES] = pygame.image.load(path.join(CENARIOS_DIR, 'fundo_do_mar_peixe1.png')).convert()
     assets[POUCOS_PEIXES] = pygame.transform.scale(assets[POUCOS_PEIXES], (WIDTH, HEIGHT))

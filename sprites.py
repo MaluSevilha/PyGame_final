@@ -22,7 +22,7 @@ class Peixes(pygame.sprite.Sprite):
         self.speedx = random.randint(2, 5)
         self.assets = assets
 
-    def update(self,level,level2):
+    def update(self,level0,level,level2):
         # Atualização da posição da nave
         self.rect.x += self.speedx
 
@@ -33,7 +33,10 @@ class Peixes(pygame.sprite.Sprite):
             self.rect = self.image.get_rect()
             self.rect.x = -PEIXES_WIDTH
             self.rect.y = random.randint(96, HEIGHT - PEIXES_HEIGHT)
-            self.speedx = random.randint(2,5)
+            if level0 == True:
+                self.speedx = 2
+            else:
+                self.speedx = random.randint(2,5)
 
 # Classe do ANzol (player)    
 class Anzol(pygame.sprite.Sprite):
@@ -65,7 +68,7 @@ class Anzol(pygame.sprite.Sprite):
     def animate(self):
         self.is_animating = True
 
-    def update(self,level,level2):
+    def update(self,level0,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -124,7 +127,7 @@ class Linha(pygame.sprite.Sprite):
     def animate(self):
         self.is_animating = True
 
-    def update(self,level,level2):
+    def update(self,level0,level,level2):
         # Atualização da posição da vara
         self.rect.y += self.speedy
 
@@ -162,7 +165,7 @@ class Obstaculos(pygame.sprite.Sprite):
 
         self.assets = assets
 
-    def update(self,level,level2):
+    def update(self, level0, level, level2):
         # Atualizando a posição do obstáculo
         self.rect.x += self.speedx
 
@@ -175,6 +178,9 @@ class Obstaculos(pygame.sprite.Sprite):
             self.rect.y = random.randint(96, HEIGHT - BARRIL_HEIGHT)
         
         # Muda sua velocidade de acordo com o nível
+        if level0 == True: # Nível de instrução
+            self.speedx = random.randint(1,2)
+
         if level == False:
             self.speedx = random.randint(2,4)
         else:
@@ -202,7 +208,7 @@ class Vida(pygame.sprite.Sprite):
         self.speedx = 3
         self.assets = assets
 
-    def update(self,level,level2):
+    def update(self,level0,level,level2):
         # Atualizando a posição da vida
         self.rect.x += self.speedx
 
@@ -229,7 +235,7 @@ class Aguaviva(pygame.sprite.Sprite):
         self.speedx = random.randint(2,5)
         self.assets = assets
 
-    def update(self,level,level2):
+    def update(self,level0,level,level2):
         # Atualizando a posição da água viva
         self.rect.x += self.speedx
 

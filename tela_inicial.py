@@ -3,7 +3,7 @@ import pygame
 from os import path
 
 # Importando variáveis de outros arquivo
-from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT, SND_DIR
+from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT, SND_DIR, INSTRUCAO
 
 # Função principal
 def tela_inicial(tela):
@@ -33,7 +33,7 @@ def tela_inicial(tela):
             
             # Verifica se uma tecla foi pressionada
             if event.type == pygame.KEYUP:
-                state = JOGANDO
+                state = INSTRUCAO
                 rodando = False
 
         # A cada loop, redesenha o fundo e os sprites
@@ -44,7 +44,7 @@ def tela_inicial(tela):
         pygame.display.flip()
 
         # Confere se é para mudar de tela
-        if state == JOGANDO:
+        if state == INSTRUCAO:
 
             rodando2 = True
             tempo_inicial = pygame.time.get_ticks()
