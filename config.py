@@ -57,3 +57,6 @@ NOMES_PONTUACAO = {0: 'Não Jogou'}
 # ---- Alfabeto
 string = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z'
 ALFABETO = string.split(',')
+
+# Score necessário para iniciar o jogo
+SCORE_INICIO = 2

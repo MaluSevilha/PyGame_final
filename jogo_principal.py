@@ -2,11 +2,12 @@
 import pygame
 
 # Importando variáveis e funções de outros arquivos
-from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO, SCORES_LISTA
+from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO, SCORES_LISTA, INSTRUCAO
 from tela_inicial import tela_inicial
 from tela_jogo import game_screen
 from game_over import game_over
 from assets import toca_musica
+from tela_instrucao import instrucao
 
 # Iniciando o pygame
 pygame.init()
@@ -21,9 +22,14 @@ toca_musica('assets/sons/Club Penguin Music - Ice Fishing.mp3')
 # ----- Loop Principal
 state = INICIO
 while state != FECHAR:
-    # Abre a tela de início
+    # Começa a tela de início
     if state == INICIO:
         state = tela_inicial(window)
+
+    # Abre a tela de instruções
+    elif state == INSTRUCAO:
+        lista_return = instrucao(window)
+        state = lista_return
 
     # Abre a tela do jogo
     elif state == JOGANDO:
