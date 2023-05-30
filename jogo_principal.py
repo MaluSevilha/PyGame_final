@@ -6,7 +6,6 @@ from config import WIDTH, HEIGHT, INICIO, FECHAR, MORTO, JOGANDO, SCORES_LISTA, 
 from tela_inicial import tela_inicial
 from tela_jogo import game_screen
 from game_over import game_over
-from assets import toca_musica
 from tela_instrucao import instrucao
 
 # Iniciando o pygame
@@ -17,7 +16,6 @@ pygame.mixer.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Fishing Fox')
 
-toca_musica('assets/sons/Club Penguin Music - Ice Fishing.mp3')
 
 # ----- Loop Principal
 state = INICIO

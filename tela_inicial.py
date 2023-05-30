@@ -4,9 +4,13 @@ from os import path
 
 # Importando variáveis de outros arquivo
 from config import CENARIOS_DIR, PRETO, FPS, JOGANDO, FECHAR, WIDTH, HEIGHT, SND_DIR, INSTRUCAO
+from assets import toca_musica
 
 # Função principal
 def tela_inicial(tela):
+    # Toca a música inicial
+    toca_musica('assets/sons/Club Penguin Music - Ice Fishing.mp3')
+
     # Variável para o ajuste de velocidade
     relogio = pygame.time.Clock()
 

@@ -5,11 +5,13 @@ import pygame
 from config import HEIGHT ,WIDTH, FPS,  VEL_JOGADOR, JOGANDO, FECHAR, MORTO, PRETO, AMARELO, VERMELHO, SCORE_INICIO
 from assets import load_assets, BACKGROUND, SCORE_FONT, POUCOS_PEIXES, MEDIO_PEIXES, CHEIO_PEIXES, ANZOL_IMG
 from assets import PEIXE_AZUL_IMG, PEIXE_VERDE_IMG, ANZOL_PEIXE_AZUL_IMG, ANZOL_PEIXE_VERDE_IMG, ANZOL_PEIXE_LARANJA_IMG
-from assets import PERDEU_ISCA_SOUND, PESCOU_SOUND, CHOQUE_SOUND
+from assets import PERDEU_ISCA_SOUND, PESCOU_SOUND, CHOQUE_SOUND, toca_musica, CORACAO_SOUND
 from sprites import Peixes, Anzol, Linha, Obstaculos, Vida, Aguaviva
 
 # Fazendo a função da tela do jogo
 def game_screen(window):
+    # Toca a musica principal
+    toca_musica('assets/sons/under_the_sea.mp3')
 
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
@@ -241,6 +243,7 @@ def game_screen(window):
             # Adiciona cada vida pega as vidas do jogador
             for vida_pega in pegou_vida:
                 vidas += 1
+                assets[CORACAO_SOUND].play()
             
             # Se tiver pego um peixe
             if peixe_pescado == True:

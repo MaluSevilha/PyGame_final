@@ -4,13 +4,16 @@ from os import path
 
 # Importando variáveis de outros arquivos
 from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT, BRANCO, ALFABETO, MORTO, NOMES_PONTUACAO
-from assets import load_assets, SCORE_FONT, SCORE_FONT_TABELA 
+from assets import load_assets, SCORE_FONT, SCORE_FONT_TABELA, toca_musica 
 
 # Criando função da tela de game over
 def game_over(tela, score, SCORES_LISTA):
     
     assets = load_assets()
     state = MORTO
+    
+    # Toca música do game over
+    toca_musica('assets/sons/som_game_over.mp3')
 
     # Armazena o score, caso ele esteja no top 5
     if score > min(SCORES_LISTA):
