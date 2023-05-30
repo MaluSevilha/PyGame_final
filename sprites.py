@@ -187,7 +187,7 @@ class Obstaculos(pygame.sprite.Sprite):
             self.speedx = random.randint(2,7)
 
         if level2 == True:
-            self.speedx = random.randint(10,15)
+            self.speedx = random.randint(8,12)
 
 # Classe das vidas
 class Vida(pygame.sprite.Sprite):
