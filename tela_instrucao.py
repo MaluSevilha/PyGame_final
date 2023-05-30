@@ -73,7 +73,6 @@ def instrucao(window):
     peixe_pescado = False
 
     # ===== Loop principal =====
-    pygame.mixer.music.play(loops = -1)
     while state != FECHAR and state != MORTO and state!= JOGANDO:
         clock.tick(FPS)
 

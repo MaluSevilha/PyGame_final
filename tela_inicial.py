@@ -16,6 +16,8 @@ def tela_inicial(tela):
     background_rect = background.get_rect()
 
     # ----- Loop principal
+    pygame.mixer.music.play(loops = -1)
+    
     rodando = True
     while rodando:
         # Define um estado inicial 
