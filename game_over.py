@@ -3,7 +3,7 @@ import pygame
 from os import path
 
 # Importando variáveis de outros arquivos
-from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT, BRANCO, ALFABETO, MORTO, NOMES_PONTUACAO
+from config import CENARIOS_DIR, PRETO, FPS, INICIO, FECHAR, WIDTH, HEIGHT, BRANCO, ALFABETO, MORTO, NOMES_PONTUACAO, AMARELO
 from assets import load_assets, SCORE_FONT, SCORE_FONT_TABELA, toca_musica 
 
 # Criando função da tela de game over
@@ -42,6 +42,10 @@ def game_over(tela, score, SCORES_LISTA):
         # Define variável para quando jogador está digitando
         colocar_nome = True
 
+        # Define variável para quado jogador utiliza nome já usado
+        colocar_aviso = False
+        
+        # Enquanto o jogador estiver digitando o nome
         while colocar_nome:
             for event in pygame.event.get():
                 # Verifica se foi fechado
@@ -53,8 +57,14 @@ def game_over(tela, score, SCORES_LISTA):
                 if event.type == pygame.KEYDOWN:
                     # Se clicou enter  
                     if event.key == pygame.K_RETURN:
-                        NOMES_PONTUACAO[nome] = score
-                        colocar_nome = False
+                        # Se o nome não estiver sendo ocupado
+                        if nome not in NOMES_PONTUACAO:
+                            NOMES_PONTUACAO[nome] = score
+                            colocar_nome = False
+                        
+                        # Se o nome já estiver sendo ocupado
+                        else:
+                            colocar_aviso = True
                     
                     # Se clicou backspace
                     elif event.key == pygame.K_BACKSPACE:
@@ -79,6 +89,23 @@ def game_over(tela, score, SCORES_LISTA):
                         # Atualiza nome do jogador na tela (letra por letra)
                         tela.fill(PRETO)
                         tela.blit(background, background_rect)
+
+                        # Se o usuário tiver digitado um nome inválido
+                        if colocar_aviso:
+                            # Separando a mensagem em duas linhas
+                            aviso_surface = assets[SCORE_FONT].render("Nome", True, AMARELO)
+                            aviso_rect = text_surface.get_rect()
+                            aviso_rect.midtop = (WIDTH//2, 103)
+                            tela.blit(aviso_surface, aviso_rect)
+
+                            aviso_surface = assets[SCORE_FONT].render("Indisponível", True, AMARELO)
+                            aviso_rect = text_surface.get_rect()
+                            aviso_rect.midtop = (120, 133)
+                            tela.blit(aviso_surface, aviso_rect)
+
+                            # Tira o aviso
+                            colocar_aviso = False
+
                         text_surface = assets[SCORE_FONT].render("{0}".format(nome), True, BRANCO)
                         text_rect = text_surface.get_rect()
                         text_rect.midtop = (238,  278)
@@ -214,12 +241,3 @@ def game_over(tela, score, SCORES_LISTA):
 
     # Retornando o estado
     return [state, SCORES_LISTA]
-
-# quadrado para score
-# canto superior esquerdo = (74, 134)
-# canto inferior direito = (442, 426)
-
-# text_surface = assets[SCORE_FONT].render("{:03d}".format(score), True, AMARELO)
-#         text_rect = text_surface.get_rect()
-#         text_rect.midtop = (WIDTH / 2,  10)
-#         window.blit(text_surface, text_rect)
