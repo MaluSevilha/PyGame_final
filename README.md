@@ -8,6 +8,7 @@ gameplay no youtube: https://www.youtube.com/watch?v=rT5n7s2Ey3U
 fontes:
 ignorar o pychace - https://opendev.org/openstack/tempest/commit/01cce04c2e6d5364869344733d4beab54f60caba 
 música principal: https://www.youtube.com/watch?v=Sds8vgkZykc
+mússica inicial: https://www.youtube.com/watch?v=BryfoxWJ4rw
 coração pegar sound: https://www.youtube.com/watch?v=TCD77mH0lYs
 game over sound: https://www.youtube.com/watch?v=uH1Go3HdYVE
 sprites barris: https://www.vecteezy.com/vector-art/8875685-toxic-barrel-pixel-art-beer-barrel-pixel-art
