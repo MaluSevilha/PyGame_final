@@ -53,7 +53,7 @@ def game_over(tela, score, SCORES_LISTA):
                 if event.type == pygame.KEYDOWN:
                     # Se clicou enter  
                     if event.key == pygame.K_RETURN:
-                        NOMES_PONTUACAO[score] = nome
+                        NOMES_PONTUACAO[nome] = score
                         colocar_nome = False
                     
                     # Se clicou backspace
@@ -65,10 +65,18 @@ def game_over(tela, score, SCORES_LISTA):
                         # Se essa tecla for uma letra
                         if event.key >= 97 and event.key <= 122:
                             nome += ALFABETO[event.key - 97]
+                        
+                        # Se essa tecla for um espaço
+                        elif event.key == pygame.K_SPACE:
+                            nome += ' '
+                        
+                        # Se essa tecla for um número
+                        elif 48 <= event.key <= 57:
+                            nome += str(event.key - 48) 
                     
-                    # Se tiver não dado enter
+                    # Se não tiver dado enter
                     if colocar_nome:
-                        # ATualiza nome do jogador na tela (letra por letra)
+                        # Atualiza nome do jogador na tela (letra por letra)
                         tela.fill(PRETO)
                         tela.blit(background, background_rect)
                         text_surface = assets[SCORE_FONT].render("{0}".format(nome), True, BRANCO)
@@ -81,14 +89,48 @@ def game_over(tela, score, SCORES_LISTA):
         # Lista com as linhas modificadas do score
         novas_linhas = []
 
+        # Listas com todos os scores dos jogadores e nomes
+        todos_scores = list(NOMES_PONTUACAO.values())
+        todos_nomes = list(NOMES_PONTUACAO.keys())
+        ## Orientação pelo índice
+
+        # Lista com os nomes dos 5 melhores jogadores
+        nomes_pontuadores = []
+        
+        # Passando pelas melhores pontuações
+        index_score = 0
+        while index_score < len(SCORES_LISTA):
+            score = SCORES_LISTA[index_score]
+
+            # Se tiver um empate no meio
+            if SCORES_LISTA.count(score) >= 2 and score != 0:
+                index_ini = todos_scores.index(score)
+                index_fim = len(todos_scores) - (todos_scores[::-1].index(score))
+
+                # Quem jogou primeio fica mais bem colocado
+                for index_nome in range(index_ini, index_fim): 
+                    nome = todos_nomes[index_nome]
+
+                    # Guarda o nome do jogador na lista
+                    nomes_pontuadores.append(nome)
+                    index_score += 1
+
+            else:
+                nome = todos_nomes[todos_scores.index(score)]
+
+                # Guarda o nome do jogador na lista
+                nomes_pontuadores.append(nome)
+                index_score += 1
+
         # Reescrevendo o arquivo da tabela
         with open('tabela_score.txt', 'w') as arquivo:
             posicao = 1
 
             # Escrevendo cada linha
-            for score in SCORES_LISTA:
+            for nome in nomes_pontuadores:
                 # Pegando o nome de cada um
-                nome = NOMES_PONTUACAO[score]
+                index_pontuacao = todos_nomes.index(nome)
+                score = todos_scores[index_pontuacao]
 
                 # Refazendo a linha
                 linha = '{0}º - {1} [{2}] \n'.format(posicao, nome, score)

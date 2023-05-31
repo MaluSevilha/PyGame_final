@@ -26,7 +26,7 @@ PEIXES_WIDTH = 150
 PEIXES_HEIGHT = 100
 
 JOGADOR_WIDTH = 35
-JOGADOR_HEIGHT = HEIGHT
+JOGADOR_HEIGHT = HEIGHT + 60
 
 BARRIL_WIDTH = 50
 BARRIL_HEIGHT = 100
@@ -52,7 +52,7 @@ INSTRUCAO = 3
 
 # ---- Lista de scores mais altos
 SCORES_LISTA = [0, 0, 0, 0, 0]
-NOMES_PONTUACAO = {0: 'Não Jogou'}
+NOMES_PONTUACAO = {'Não Jogou': 0}
 
 # ---- Alfabeto
 string = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z'
