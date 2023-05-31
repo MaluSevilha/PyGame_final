@@ -8,3 +8,5 @@ ignorar o pychace - https://opendev.org/openstack/tempest/commit/01cce04c2e6d536
 música principal: https://www.youtube.com/watch?v=Sds8vgkZykc
 coração pegar sound: https://www.youtube.com/watch?v=TCD77mH0lYs
 game over sound: https://www.youtube.com/watch?v=uH1Go3HdYVE
+sprites barris: https://www.vecteezy.com/vector-art/8875685-toxic-barrel-pixel-art-beer-barrel-pixel-art
+sprites peixes: https://www.freepik.com/free-photos-vectors/fish-pixel-art
